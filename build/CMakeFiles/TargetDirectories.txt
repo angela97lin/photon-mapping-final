@@ -1,0 +1,6 @@
+/Users/ange/Desktop/pset4/build/CMakeFiles/rebuild_cache.dir
+/Users/ange/Desktop/pset4/build/CMakeFiles/edit_cache.dir
+/Users/ange/Desktop/pset4/build/CMakeFiles/a4.dir
+/Users/ange/Desktop/pset4/build/vecmath/CMakeFiles/rebuild_cache.dir
+/Users/ange/Desktop/pset4/build/vecmath/CMakeFiles/edit_cache.dir
+/Users/ange/Desktop/pset4/build/vecmath/CMakeFiles/vecmath.dir

@@ -41,4 +41,12 @@ var render = function () {
   renderer.render(scene, camera);
 };
 
-render();
+
+if (WEBGL.isWebGLAvailable()) {
+  // Initiate function or other initializations here
+  render();
+} else {
+  var warning = WEBGL.getWebGLErrorMessage();
+  document.getElementById('container').appendChild(warning);
+}
+
