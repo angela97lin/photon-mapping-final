@@ -1,0 +1,84 @@
+
+PerspectiveCamera {
+    center 5 5 10 
+    direction -0.5 -0.5 -1
+    up 0 1 0
+    angle 20
+}
+
+Lights {
+    numLights 2
+    DirectionalLight {
+        direction -0.5 -0.3 -6
+        color 1 1 1 
+    }
+        PointLight {
+        position 0 0.9 0
+	    color 1.4 1.4 1.4
+	    falloff 0.7
+    }
+}
+
+Background {
+    color 0 0 0
+    ambientLight 0.2 0.2 0.2 
+}
+
+Materials {
+    numMaterials 5
+    Material { diffuseColor 1 0 0 }
+    Material { diffuseColor 0 1 0 }
+    Material { diffuseColor 0 0 1 }
+    Material { diffuseColor 1 1 1 }
+    Material { diffuseColor .1 .1 1 }
+
+}
+
+Group {
+    numObjects 6
+    MaterialIndex 0
+    Transform {
+        YRotate  25 
+    TriangleMesh {
+        obj_file models/left.obj
+    }
+    }
+
+    MaterialIndex 1
+        Transform {
+        YRotate  25 
+    TriangleMesh {
+        obj_file models/right.obj
+    }
+    }
+
+    MaterialIndex 4
+    Transform {
+    YRotate  25 
+    TriangleMesh {
+        obj_file models/back.obj
+    }
+    }
+
+    MaterialIndex 3
+        Transform {
+    YRotate  25 
+    TriangleMesh {
+        obj_file models/ceiling.obj
+    }
+    }
+
+    MaterialIndex 3
+        Transform {
+    YRotate  25 
+    TriangleMesh {
+        obj_file models/floor.obj
+    }
+    }
+
+    MaterialIndex 3
+    Sphere {
+	center 0 -0.7 0 
+        radius 0.2 
+    }
+}

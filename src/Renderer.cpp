@@ -5,7 +5,7 @@
 #include "Image.h"
 #include "Ray.h"
 #include "VecUtils.h"
-
+#include "PhotonMap.h"
 #include <limits>
 #define EPSILON 0.001f
 #define NUM_SAMPLES 9

@@ -135,11 +135,13 @@ CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/Mesh.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/ObjTriangle.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/Object3D.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/Octree.h
+CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/PhotonMap.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/Ray.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/Renderer.cpp
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/Renderer.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/SceneParser.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/VecUtils.h
+CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/nanoflann.hpp
 
 CMakeFiles/a4.dir/src/SceneParser.cpp.o: ../vecmath/include/Matrix2f.h
 CMakeFiles/a4.dir/src/SceneParser.cpp.o: ../vecmath/include/Matrix3f.h

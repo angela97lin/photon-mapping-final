@@ -1,0 +1,6 @@
+/Users/ange/Desktop/photon-mapping-final/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/ange/Desktop/photon-mapping-final/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ange/Desktop/photon-mapping-final/cmake-build-debug/CMakeFiles/a4.dir
+/Users/ange/Desktop/photon-mapping-final/cmake-build-debug/vecmath/CMakeFiles/rebuild_cache.dir
+/Users/ange/Desktop/photon-mapping-final/cmake-build-debug/vecmath/CMakeFiles/edit_cache.dir
+/Users/ange/Desktop/photon-mapping-final/cmake-build-debug/vecmath/CMakeFiles/vecmath.dir

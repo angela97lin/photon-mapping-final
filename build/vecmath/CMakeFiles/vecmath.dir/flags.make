@@ -6,5 +6,5 @@ CXX_FLAGS =   -Wno-deprecated-declarations -std=c++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/ange/Desktop/pset4/vecmath/include 
+CXX_INCLUDES = -I/Users/ange/Desktop/photon-mapping-final/vecmath/include 
 

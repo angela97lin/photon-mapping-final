@@ -10,3 +10,4 @@ ${BIN} -size ${SIZE} -input ../data/scene04_axes.txt   -output out/a04.png -norm
 ${BIN} -size ${SIZE} -input ../data/scene05_bunny_200.txt -output out/a05.png -normals out/a05n.png -depth 0.8 1.0 out/a05d.png
 ${BIN} -size ${SIZE} -input ../data/scene06_bunny_1k.txt -bounces 4 -output out/a06.png -normals out/a06n.png -depth 8 18 out/a06d.png
 ${BIN} -size ${SIZE} -input ../data/scene07_arch.txt -bounces 4 -shadows -output out/a07.png -normals out/a07n.png -depth 8 18 out/a07d.png
+${BIN} -size ${SIZE} -input ../data/scene08_diamond.txt -bounces 4 -shadows -output out/a08.png -normals out/a08n.png -depth 8 18 out/a08d.png
