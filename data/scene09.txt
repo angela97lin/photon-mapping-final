@@ -1,19 +1,20 @@
 
 PerspectiveCamera {
-    center 5 5 10 
-    direction -0.5 -0.5 -1
+    center 5 6 10 
+    direction -0.5 -0.6 -1
     up 0 1 0
-    angle 20
+    angle 15
 }
 
 Lights {
     numLights 2
     DirectionalLight {
-        direction -0.5 -0.3 -6
-        color 1 1 1 
+        direction -0.3 -0.5 -0.5 
+	    color 0.3 0.3 0.3
     }
-        PointLight {
-        position 0 0.9 0
+
+    PointLight {
+        position -1 1 -2
 	    color 1.4 1.4 1.4
 	    falloff 0.7
     }
@@ -26,19 +27,39 @@ Background {
 
 Materials {
     numMaterials 5
-    Material { diffuseColor 1 0 0 }
-    Material { diffuseColor 0 1 0 }
-    Material { diffuseColor 0 0 1 }
-    Material { diffuseColor 1 1 1 }
-    Material { diffuseColor .1 .1 1 }
 
+    PhongMaterial {
+        diffuseColor 1 1 1
+    }
+
+    PhongMaterial {
+      diffuseColor 0.9 0 0 
+    }
+
+    PhongMaterial {
+      diffuseColor 0 0.9 0 
+    }
+
+    PhongMaterial {
+      diffuseColor 0 0 0.9 
+    }
+
+        PhongMaterial {
+        diffuseColor 1 1 1
+	    specularColor 0.4 0.4 0.4
+        shininess 1
+    }
 }
+
+
 
 Group {
     numObjects 6
-    MaterialIndex 0
+    MaterialIndex 2
     Transform {
-        YRotate  25 
+        YRotate  25
+            XRotate -25
+ 
     TriangleMesh {
         obj_file models/left.obj
     }
@@ -47,38 +68,53 @@ Group {
     MaterialIndex 1
         Transform {
         YRotate  25 
+    XRotate -25
+
     TriangleMesh {
         obj_file models/right.obj
     }
     }
 
-    MaterialIndex 4
+    MaterialIndex 0
     Transform {
     YRotate  25 
+        XRotate -25
+
     TriangleMesh {
         obj_file models/back.obj
     }
     }
 
-    MaterialIndex 3
+    MaterialIndex 0
         Transform {
     YRotate  25 
+    XRotate -25
     TriangleMesh {
         obj_file models/ceiling.obj
     }
     }
 
-    MaterialIndex 3
+    MaterialIndex 0
         Transform {
     YRotate  25 
+        XRotate -25
+
     TriangleMesh {
         obj_file models/floor.obj
     }
     }
 
-    MaterialIndex 3
-    Sphere {
-	center 0 -0.7 0 
+    MaterialIndex 4
+    Transform {
+            YRotate  25 
+        XRotate -25
+            Sphere {
+	center 0 -0.6 0 
         radius 0.2 
     }
+    }
+
 }
+
+
+

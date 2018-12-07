@@ -13,7 +13,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/a4.dir/src/Renderer.cpp.o"
   "CMakeFiles/a4.dir/src/SceneParser.cpp.o"
   "CMakeFiles/a4.dir/src/VecUtils.cpp.o"
-  "CMakeFiles/a4.dir/src/MeshPlus.cpp.o"
   "CMakeFiles/a4.dir/src/ObjTriangle.cpp.o"
   "CMakeFiles/a4.dir/src/TestLoader.cpp.o"
   "a4.pdb"

@@ -1,6 +1,6 @@
 # This is the script we will test your submission with.
 
-SIZE="400 400"
+SIZE="800 800"
 BIN=./a4
 
 

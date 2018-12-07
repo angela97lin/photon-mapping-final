@@ -78,7 +78,7 @@ void Renderer::Render()
 
                 Hit h;
                 Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
-                printf("Color: %d %d %d\n", color.x(), color.y(), color.z());
+                // printf("Color: %d %d %d\n", color.x(), color.y(), color.z());
                 image.setPixel(x, y, color);
             }
         }

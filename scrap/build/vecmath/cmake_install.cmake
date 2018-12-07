@@ -1,4 +1,4 @@
-# Install script for directory: /Users/ange/Desktop/photon-mapping-final/vecmath
+# Install script for directory: /Users/ange/Desktop/photon-mapping-final/scrap/vecmath
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.9.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ange/Desktop/photon-mapping-final
+CMAKE_SOURCE_DIR = /Users/ange/Desktop/photon-mapping-final/scrap
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ange/Desktop/photon-mapping-final/build
+CMAKE_BINARY_DIR = /Users/ange/Desktop/photon-mapping-final/scrap/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ange/Desktop/photon-mapping-final/build/CMakeFiles /Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles /Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ange/Desktop/photon-mapping-final/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -324,33 +324,6 @@ src/Mesh.s: src/Mesh.cpp.s
 src/Mesh.cpp.s:
 	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/Mesh.cpp.s
 .PHONY : src/Mesh.cpp.s
-
-src/MeshPlus.o: src/MeshPlus.cpp.o
-
-.PHONY : src/MeshPlus.o
-
-# target to build an object file
-src/MeshPlus.cpp.o:
-	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/MeshPlus.cpp.o
-.PHONY : src/MeshPlus.cpp.o
-
-src/MeshPlus.i: src/MeshPlus.cpp.i
-
-.PHONY : src/MeshPlus.i
-
-# target to preprocess a source file
-src/MeshPlus.cpp.i:
-	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/MeshPlus.cpp.i
-.PHONY : src/MeshPlus.cpp.i
-
-src/MeshPlus.s: src/MeshPlus.cpp.s
-
-.PHONY : src/MeshPlus.s
-
-# target to generate assembly for a file
-src/MeshPlus.cpp.s:
-	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/MeshPlus.cpp.s
-.PHONY : src/MeshPlus.cpp.s
 
 src/ObjTriangle.o: src/ObjTriangle.cpp.o
 
@@ -626,9 +599,6 @@ help:
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"
-	@echo "... src/MeshPlus.o"
-	@echo "... src/MeshPlus.i"
-	@echo "... src/MeshPlus.s"
 	@echo "... src/ObjTriangle.o"
 	@echo "... src/ObjTriangle.i"
 	@echo "... src/ObjTriangle.s"

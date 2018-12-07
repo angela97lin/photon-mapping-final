@@ -400,7 +400,7 @@ SceneParser::parseObject(char token[MAX_PARSER_TOKEN_LENGTH])
     {
         answer = (Object3D *)parseTransform();
     }
-    else if (!strcmp(token, "OBJ"))
+    else if (!strcmp(token, "obj"))
     {
         answer = (Object3D *)parseOBJ();
     }
@@ -526,20 +526,21 @@ SceneParser::parseOBJ()
                               curMesh.Vertices[curMesh.Indices[j + 2]].Normal,
                               &m);
             _triangles.push_back(triangle);
-            // curMesh.Vertices[curMesh.Indices[j]].Position.print();
+            curMesh.Vertices[curMesh.Indices[j]].Position.print();
      
         }
 
 
-        for (int j = 0; j < curMesh.Indices.size(); j += 1)
-        {
+        // for (int j = 0; j < curMesh.Indices.size(); j += 1)
+        // {
+        //     // curMesh.Vertices[curMesh.Indices[j]].Position.print();
+        // }
 
-            // curMesh.Vertices[curMesh.Indices[j]].Position.print();
-        }
+
         Mesh *object = new Mesh(_triangles, _current_material);
         answer->addObject(object);
         _objects.push_back(object);
-        // printf("Mesh with %d number of triangles.\n", object->getTriangles().size());
+        printf("Mesh with %d number of triangles.\n", object->getTriangles().size());
             }
 
     getToken(token);

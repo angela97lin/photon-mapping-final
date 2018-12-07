@@ -1,6 +1,6 @@
-/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/rebuild_cache.dir
-/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/edit_cache.dir
-/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir
-/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/rebuild_cache.dir
-/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/edit_cache.dir
-/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir
+/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles/rebuild_cache.dir
+/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles/edit_cache.dir
+/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles/a4.dir
+/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/rebuild_cache.dir
+/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/edit_cache.dir
+/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir

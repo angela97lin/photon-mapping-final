@@ -86,23 +86,6 @@ CMakeFiles/a4.dir/src/Mesh.cpp.o: ../src/Object3D.h
 CMakeFiles/a4.dir/src/Mesh.cpp.o: ../src/Octree.h
 CMakeFiles/a4.dir/src/Mesh.cpp.o: ../src/Ray.h
 
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/Matrix2f.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/Matrix3f.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/Matrix4f.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/Quat4f.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/Vector2f.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/Vector3f.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/Vector4f.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../vecmath/include/vecmath.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/Image.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/Material.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/MeshPlus.cpp
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/MeshPlus.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/ObjTriangle.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/Object3D.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/Octree.h
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/Ray.h
-
 CMakeFiles/a4.dir/src/ObjTriangle.cpp.o: ../src/ObjTriangle.cpp
 CMakeFiles/a4.dir/src/ObjTriangle.cpp.o: ../src/ObjTriangle.h
 

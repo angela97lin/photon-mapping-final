@@ -46,9 +46,9 @@ Vector3f.h
 Vector4f.h
 ../vecmath/include/Vector4f.h
 
-/Users/ange/Desktop/photon-mapping-final/src/ArgParser.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.cpp
 ArgParser.h
-/Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.h
 cstring
 -
 cassert
@@ -60,17 +60,17 @@ cstdlib
 iostream
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.h
 string
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Camera.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.cpp
 Camera.h
-/Users/ange/Desktop/photon-mapping-final/src/Camera.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.h
 
-/Users/ange/Desktop/photon-mapping-final/src/Camera.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.h
 Ray.h
-/Users/ange/Desktop/photon-mapping-final/src/Ray.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Ray.h
 vecmath.h
 -
 float.h
@@ -78,9 +78,9 @@ float.h
 cmath
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/CubeMap.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/CubeMap.cpp
 CubeMap.h
-/Users/ange/Desktop/photon-mapping-final/src/CubeMap.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/CubeMap.h
 cmath
 -
 string
@@ -88,19 +88,19 @@ string
 iostream
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/CubeMap.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/CubeMap.h
 Image.h
-/Users/ange/Desktop/photon-mapping-final/src/Image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Image.h
 Vector3f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector3f.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Vector3f.h
 string
 -
 Vector3f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector3f.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Vector3f.h
 iostream
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Image.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Image.cpp
 cstdlib
 -
 cstdio
@@ -110,13 +110,13 @@ cstring
 cassert
 -
 Image.h
-/Users/ange/Desktop/photon-mapping-final/src/Image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Image.h
 stb_image.h
-/Users/ange/Desktop/photon-mapping-final/src/stb_image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb_image.h
 stb_image_write.h
-/Users/ange/Desktop/photon-mapping-final/src/stb_image_write.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb_image_write.h
 
-/Users/ange/Desktop/photon-mapping-final/src/Image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Image.h
 cassert
 -
 string
@@ -124,41 +124,41 @@ string
 vector
 -
 vecmath.h
-/Users/ange/Desktop/photon-mapping-final/src/vecmath.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/vecmath.h
 
-/Users/ange/Desktop/photon-mapping-final/src/Light.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Light.cpp
 Light.h
-/Users/ange/Desktop/photon-mapping-final/src/Light.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Light.h
 
-/Users/ange/Desktop/photon-mapping-final/src/Light.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Light.h
 Vector3f.h
 -
 Object3D.h
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.h
 limits
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Material.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Material.cpp
 Material.h
-/Users/ange/Desktop/photon-mapping-final/src/Material.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Material.h
 
-/Users/ange/Desktop/photon-mapping-final/src/Material.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Material.h
 cassert
 -
 vecmath.h
 -
 Ray.h
-/Users/ange/Desktop/photon-mapping-final/src/Ray.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Ray.h
 Image.h
-/Users/ange/Desktop/photon-mapping-final/src/Image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Image.h
 Vector3f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector3f.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Vector3f.h
 string
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Mesh.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.cpp
 Mesh.h
-/Users/ange/Desktop/photon-mapping-final/src/Mesh.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.h
 fstream
 -
 iostream
@@ -172,51 +172,21 @@ utility
 sstream
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Mesh.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.h
 Object3D.h
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.h
 ObjTriangle.h
-/Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ObjTriangle.h
 Octree.h
-/Users/ange/Desktop/photon-mapping-final/src/Octree.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Octree.h
 Vector2f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector2f.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Vector2f.h
 Vector3f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector3f.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Vector3f.h
 vector
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/MeshPlus.cpp
-MeshPlus.h
-/Users/ange/Desktop/photon-mapping-final/src/MeshPlus.h
-fstream
--
-iostream
--
-algorithm
--
-cstdlib
--
-utility
--
-sstream
--
-
-/Users/ange/Desktop/photon-mapping-final/src/MeshPlus.h
-Object3D.h
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.h
-ObjTriangle.h
-/Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.h
-Octree.h
-/Users/ange/Desktop/photon-mapping-final/src/Octree.h
-Vector2f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector2f.h
-Vector3f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector3f.h
-vector
--
-
-/Users/ange/Desktop/photon-mapping-final/src/OBJLoader.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/OBJLoader.h
 iostream
 -
 vector
@@ -228,43 +198,43 @@ fstream
 math.h
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ObjTriangle.cpp
 ObjTriangle.h
-/Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ObjTriangle.h
 
-/Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ObjTriangle.h
 array
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.cpp
 Object3D.h
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.h
 
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.h
 Ray.h
-/Users/ange/Desktop/photon-mapping-final/src/Ray.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Ray.h
 Material.h
-/Users/ange/Desktop/photon-mapping-final/src/Material.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Material.h
 string
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Octree.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Octree.cpp
 Ray.h
-/Users/ange/Desktop/photon-mapping-final/src/Ray.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Ray.h
 Vector3f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector3f.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Vector3f.h
 Mesh.h
-/Users/ange/Desktop/photon-mapping-final/src/Mesh.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.h
 Octree.h
-/Users/ange/Desktop/photon-mapping-final/src/Octree.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Octree.h
 vector
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Octree.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Octree.h
 
-/Users/ange/Desktop/photon-mapping-final/src/Ray.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Ray.h
 Vector3f.h
-/Users/ange/Desktop/photon-mapping-final/src/Vector3f.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Vector3f.h
 cassert
 -
 limits
@@ -272,31 +242,31 @@ limits
 iostream
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Renderer.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Renderer.cpp
 Renderer.h
-/Users/ange/Desktop/photon-mapping-final/src/Renderer.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Renderer.h
 ArgParser.h
-/Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.h
 Camera.h
-/Users/ange/Desktop/photon-mapping-final/src/Camera.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.h
 Image.h
-/Users/ange/Desktop/photon-mapping-final/src/Image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Image.h
 Ray.h
-/Users/ange/Desktop/photon-mapping-final/src/Ray.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Ray.h
 VecUtils.h
-/Users/ange/Desktop/photon-mapping-final/src/VecUtils.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/VecUtils.h
 limits
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/Renderer.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Renderer.h
 string
 -
 SceneParser.h
-/Users/ange/Desktop/photon-mapping-final/src/SceneParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.h
 ArgParser.h
-/Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.h
 
-/Users/ange/Desktop/photon-mapping-final/src/SceneParser.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.cpp
 cstdio
 -
 cstring
@@ -306,21 +276,21 @@ cstdlib
 cmath
 -
 SceneParser.h
-/Users/ange/Desktop/photon-mapping-final/src/SceneParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.h
 Camera.h
-/Users/ange/Desktop/photon-mapping-final/src/Camera.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.h
 Light.h
-/Users/ange/Desktop/photon-mapping-final/src/Light.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Light.h
 Material.h
-/Users/ange/Desktop/photon-mapping-final/src/Material.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Material.h
 tiny_obj_loader.h
-/Users/ange/Desktop/photon-mapping-final/src/tiny_obj_loader.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/tiny_obj_loader.h
 OBJLoader.h
-/Users/ange/Desktop/photon-mapping-final/src/OBJLoader.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/OBJLoader.h
 Object3D.h
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.h
 
-/Users/ange/Desktop/photon-mapping-final/src/SceneParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.h
 cassert
 -
 vector
@@ -328,41 +298,41 @@ vector
 vecmath.h
 -
 SceneParser.h
-/Users/ange/Desktop/photon-mapping-final/src/SceneParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.h
 Camera.h
-/Users/ange/Desktop/photon-mapping-final/src/Camera.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.h
 CubeMap.h
-/Users/ange/Desktop/photon-mapping-final/src/CubeMap.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/CubeMap.h
 Light.h
-/Users/ange/Desktop/photon-mapping-final/src/Light.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Light.h
 Material.h
-/Users/ange/Desktop/photon-mapping-final/src/Material.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Material.h
 Object3D.h
-/Users/ange/Desktop/photon-mapping-final/src/Object3D.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.h
 Mesh.h
-/Users/ange/Desktop/photon-mapping-final/src/Mesh.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.h
 
-/Users/ange/Desktop/photon-mapping-final/src/TestLoader.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/TestLoader.cpp
 
-/Users/ange/Desktop/photon-mapping-final/src/VecUtils.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/VecUtils.cpp
 VecUtils.h
-/Users/ange/Desktop/photon-mapping-final/src/VecUtils.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/VecUtils.h
 
-/Users/ange/Desktop/photon-mapping-final/src/VecUtils.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/VecUtils.h
 vecmath.h
 -
 algorithm
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/main.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/main.cpp
 cstring
 -
 iostream
 -
 ArgParser.h
-/Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.h
 Renderer.h
-/Users/ange/Desktop/photon-mapping-final/src/Renderer.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/Renderer.h
 iostream
 -
 fstream
@@ -380,15 +350,15 @@ utility
 sstream
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/stb.cpp
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb.cpp
 stb_image.h
-/Users/ange/Desktop/photon-mapping-final/src/stb_image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb_image.h
 stb_image_write.h
-/Users/ange/Desktop/photon-mapping-final/src/stb_image_write.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb_image_write.h
 
-/Users/ange/Desktop/photon-mapping-final/src/stb_image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb_image.h
 stb_image.h
-/Users/ange/Desktop/photon-mapping-final/src/stb_image.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb_image.h
 stdio.h
 -
 stdarg.h
@@ -414,7 +384,7 @@ intrin.h
 arm_neon.h
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/stb_image_write.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/stb_image_write.h
 stdio.h
 -
 stdarg.h
@@ -428,7 +398,7 @@ math.h
 assert.h
 -
 
-/Users/ange/Desktop/photon-mapping-final/src/tiny_obj_loader.h
+/Users/ange/Desktop/photon-mapping-final/scrap/src/tiny_obj_loader.h
 map
 -
 string

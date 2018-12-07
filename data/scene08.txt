@@ -20,18 +20,22 @@ Background {
 }
 
 Materials {
-    numMaterials 5
+    numMaterials 6
     Material { diffuseColor 1 0 0 }
     Material { diffuseColor 0 1 0 }
     Material { diffuseColor 0 0 1 }
     Material { diffuseColor 1 1 1 }
     Material { diffuseColor .1 .1 1 }
-
+    PhongMaterial {	
+        diffuseColor 0.79 0.66 0.44
+	specularColor 1 1 1 
+	shininess 20
+    }
 }
 
 Group {
     numObjects 6
-    MaterialIndex 0
+    MaterialIndex 5
     Transform {
         YRotate  25 
     TriangleMesh {
@@ -39,7 +43,7 @@ Group {
     }
     }
 
-    MaterialIndex 1
+    MaterialIndex 5
         Transform {
         YRotate  25 
     TriangleMesh {
@@ -47,7 +51,7 @@ Group {
     }
     }
 
-    MaterialIndex 4
+    MaterialIndex 5
     Transform {
     YRotate  25 
     TriangleMesh {
@@ -73,7 +77,7 @@ Group {
 
     MaterialIndex 3
     Sphere {
-	center 0 -0.7 0 
+	center 0 -0.6 0 
         radius 0.2 
     }
 }

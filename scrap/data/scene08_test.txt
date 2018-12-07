@@ -1,6 +1,7 @@
+
 PerspectiveCamera {
-    center -5.3 8.0 8.3
-    direction .4 -.5 -.75
+    center 0.35 0.6 0.8
+    direction -0.5 -0.5 -1
     up 0 1 0
     angle 25
 }
@@ -8,50 +9,36 @@ PerspectiveCamera {
 Lights {
     numLights 2
     DirectionalLight {
-        direction -0.3 -0.5 -0.5 
-	    color 0.3 0.3 0.3
+        direction 0.2 -1 -0.4
+	color 0.7 0.7 0.7
     }
-    PointLight {
-        position -2 4 -2
-	    color 1.4 1.4 1.4
-	    falloff 0.7
+    DirectionalLight {
+        direction -7 -5 -5
+	color 0.3 0.3 0.3
     }
 }
 
 Background {
-    color 0 0 0
+    color 0.1 0.7 0.2
     ambientLight 0.1 0.1 0.1 
 }
 
 Materials {
-    numMaterials 4
+    numMaterials 1
+    PhongMaterial {	
+        diffuseColor 0.79 0.66 0.44
+	specularColor 1 1 1 
+	shininess 20
 
-    PhongMaterial {
-        diffuseColor 0.5 0.5 0.5
-	    specularColor 0.4 0.4 0.4
-        shininess 1
-    }
-
-    PhongMaterial {
-      diffuseColor 0.9 0 0 
-    }
-
-    PhongMaterial {
-      diffuseColor 0 0.9 0 
-    }
-
-    PhongMaterial {
-      diffuseColor 0 0 0.9 
     }
 }
 
 Group {
     numObjects 1
 
-    OBJ {
-	obj_file ../data/box_stack.obj
-	}
-
+    MaterialIndex 0
+    obj {
+        obj_file ../data/models/bunny_200.obj
+    }
 }
-
 

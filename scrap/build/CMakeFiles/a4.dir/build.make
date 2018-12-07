@@ -43,10 +43,10 @@ RM = /usr/local/Cellar/cmake/3.9.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ange/Desktop/photon-mapping-final
+CMAKE_SOURCE_DIR = /Users/ange/Desktop/photon-mapping-final/scrap
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ange/Desktop/photon-mapping-final/build
+CMAKE_BINARY_DIR = /Users/ange/Desktop/photon-mapping-final/scrap/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/a4.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/a4.dir/flags.make
 
 CMakeFiles/a4.dir/src/main.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/a4.dir/src/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/main.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/a4.dir/src/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/main.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/main.cpp
 
 CMakeFiles/a4.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/main.cpp > CMakeFiles/a4.dir/src/main.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/main.cpp > CMakeFiles/a4.dir/src/main.cpp.i
 
 CMakeFiles/a4.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/main.cpp -o CMakeFiles/a4.dir/src/main.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/main.cpp -o CMakeFiles/a4.dir/src/main.cpp.s
 
 CMakeFiles/a4.dir/src/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/a4.dir/src/main.cpp.o.provides.build: CMakeFiles/a4.dir/src/main.cpp.
 
 CMakeFiles/a4.dir/src/stb.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/stb.cpp.o: ../src/stb.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/a4.dir/src/stb.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/stb.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/stb.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/a4.dir/src/stb.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/stb.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/stb.cpp
 
 CMakeFiles/a4.dir/src/stb.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/stb.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/stb.cpp > CMakeFiles/a4.dir/src/stb.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/stb.cpp > CMakeFiles/a4.dir/src/stb.cpp.i
 
 CMakeFiles/a4.dir/src/stb.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/stb.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/stb.cpp -o CMakeFiles/a4.dir/src/stb.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/stb.cpp -o CMakeFiles/a4.dir/src/stb.cpp.s
 
 CMakeFiles/a4.dir/src/stb.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/a4.dir/src/stb.cpp.o.provides.build: CMakeFiles/a4.dir/src/stb.cpp.o
 
 CMakeFiles/a4.dir/src/ArgParser.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/ArgParser.cpp.o: ../src/ArgParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/a4.dir/src/ArgParser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/ArgParser.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/ArgParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/a4.dir/src/ArgParser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/ArgParser.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.cpp
 
 CMakeFiles/a4.dir/src/ArgParser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/ArgParser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/ArgParser.cpp > CMakeFiles/a4.dir/src/ArgParser.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.cpp > CMakeFiles/a4.dir/src/ArgParser.cpp.i
 
 CMakeFiles/a4.dir/src/ArgParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/ArgParser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/ArgParser.cpp -o CMakeFiles/a4.dir/src/ArgParser.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/ArgParser.cpp -o CMakeFiles/a4.dir/src/ArgParser.cpp.s
 
 CMakeFiles/a4.dir/src/ArgParser.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/a4.dir/src/ArgParser.cpp.o.provides.build: CMakeFiles/a4.dir/src/ArgP
 
 CMakeFiles/a4.dir/src/Camera.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Camera.cpp.o: ../src/Camera.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/a4.dir/src/Camera.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Camera.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/a4.dir/src/Camera.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Camera.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.cpp
 
 CMakeFiles/a4.dir/src/Camera.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Camera.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Camera.cpp > CMakeFiles/a4.dir/src/Camera.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.cpp > CMakeFiles/a4.dir/src/Camera.cpp.i
 
 CMakeFiles/a4.dir/src/Camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Camera.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Camera.cpp -o CMakeFiles/a4.dir/src/Camera.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Camera.cpp -o CMakeFiles/a4.dir/src/Camera.cpp.s
 
 CMakeFiles/a4.dir/src/Camera.cpp.o.requires:
 
@@ -155,16 +155,16 @@ CMakeFiles/a4.dir/src/Camera.cpp.o.provides.build: CMakeFiles/a4.dir/src/Camera.
 
 CMakeFiles/a4.dir/src/CubeMap.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/CubeMap.cpp.o: ../src/CubeMap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/a4.dir/src/CubeMap.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/CubeMap.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/CubeMap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/a4.dir/src/CubeMap.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/CubeMap.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/CubeMap.cpp
 
 CMakeFiles/a4.dir/src/CubeMap.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/CubeMap.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/CubeMap.cpp > CMakeFiles/a4.dir/src/CubeMap.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/CubeMap.cpp > CMakeFiles/a4.dir/src/CubeMap.cpp.i
 
 CMakeFiles/a4.dir/src/CubeMap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/CubeMap.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/CubeMap.cpp -o CMakeFiles/a4.dir/src/CubeMap.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/CubeMap.cpp -o CMakeFiles/a4.dir/src/CubeMap.cpp.s
 
 CMakeFiles/a4.dir/src/CubeMap.cpp.o.requires:
 
@@ -179,16 +179,16 @@ CMakeFiles/a4.dir/src/CubeMap.cpp.o.provides.build: CMakeFiles/a4.dir/src/CubeMa
 
 CMakeFiles/a4.dir/src/Image.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Image.cpp.o: ../src/Image.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/a4.dir/src/Image.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Image.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/a4.dir/src/Image.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Image.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Image.cpp
 
 CMakeFiles/a4.dir/src/Image.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Image.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Image.cpp > CMakeFiles/a4.dir/src/Image.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Image.cpp > CMakeFiles/a4.dir/src/Image.cpp.i
 
 CMakeFiles/a4.dir/src/Image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Image.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Image.cpp -o CMakeFiles/a4.dir/src/Image.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Image.cpp -o CMakeFiles/a4.dir/src/Image.cpp.s
 
 CMakeFiles/a4.dir/src/Image.cpp.o.requires:
 
@@ -203,16 +203,16 @@ CMakeFiles/a4.dir/src/Image.cpp.o.provides.build: CMakeFiles/a4.dir/src/Image.cp
 
 CMakeFiles/a4.dir/src/Light.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Light.cpp.o: ../src/Light.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/a4.dir/src/Light.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Light.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Light.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/a4.dir/src/Light.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Light.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Light.cpp
 
 CMakeFiles/a4.dir/src/Light.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Light.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Light.cpp > CMakeFiles/a4.dir/src/Light.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Light.cpp > CMakeFiles/a4.dir/src/Light.cpp.i
 
 CMakeFiles/a4.dir/src/Light.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Light.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Light.cpp -o CMakeFiles/a4.dir/src/Light.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Light.cpp -o CMakeFiles/a4.dir/src/Light.cpp.s
 
 CMakeFiles/a4.dir/src/Light.cpp.o.requires:
 
@@ -227,16 +227,16 @@ CMakeFiles/a4.dir/src/Light.cpp.o.provides.build: CMakeFiles/a4.dir/src/Light.cp
 
 CMakeFiles/a4.dir/src/Material.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Material.cpp.o: ../src/Material.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/a4.dir/src/Material.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Material.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Material.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/a4.dir/src/Material.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Material.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Material.cpp
 
 CMakeFiles/a4.dir/src/Material.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Material.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Material.cpp > CMakeFiles/a4.dir/src/Material.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Material.cpp > CMakeFiles/a4.dir/src/Material.cpp.i
 
 CMakeFiles/a4.dir/src/Material.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Material.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Material.cpp -o CMakeFiles/a4.dir/src/Material.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Material.cpp -o CMakeFiles/a4.dir/src/Material.cpp.s
 
 CMakeFiles/a4.dir/src/Material.cpp.o.requires:
 
@@ -251,16 +251,16 @@ CMakeFiles/a4.dir/src/Material.cpp.o.provides.build: CMakeFiles/a4.dir/src/Mater
 
 CMakeFiles/a4.dir/src/Mesh.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Mesh.cpp.o: ../src/Mesh.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/a4.dir/src/Mesh.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Mesh.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Mesh.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/a4.dir/src/Mesh.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Mesh.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.cpp
 
 CMakeFiles/a4.dir/src/Mesh.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Mesh.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Mesh.cpp > CMakeFiles/a4.dir/src/Mesh.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.cpp > CMakeFiles/a4.dir/src/Mesh.cpp.i
 
 CMakeFiles/a4.dir/src/Mesh.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Mesh.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Mesh.cpp -o CMakeFiles/a4.dir/src/Mesh.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Mesh.cpp -o CMakeFiles/a4.dir/src/Mesh.cpp.s
 
 CMakeFiles/a4.dir/src/Mesh.cpp.o.requires:
 
@@ -275,16 +275,16 @@ CMakeFiles/a4.dir/src/Mesh.cpp.o.provides.build: CMakeFiles/a4.dir/src/Mesh.cpp.
 
 CMakeFiles/a4.dir/src/Object3D.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Object3D.cpp.o: ../src/Object3D.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/a4.dir/src/Object3D.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Object3D.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Object3D.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/a4.dir/src/Object3D.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Object3D.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.cpp
 
 CMakeFiles/a4.dir/src/Object3D.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Object3D.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Object3D.cpp > CMakeFiles/a4.dir/src/Object3D.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.cpp > CMakeFiles/a4.dir/src/Object3D.cpp.i
 
 CMakeFiles/a4.dir/src/Object3D.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Object3D.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Object3D.cpp -o CMakeFiles/a4.dir/src/Object3D.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Object3D.cpp -o CMakeFiles/a4.dir/src/Object3D.cpp.s
 
 CMakeFiles/a4.dir/src/Object3D.cpp.o.requires:
 
@@ -299,16 +299,16 @@ CMakeFiles/a4.dir/src/Object3D.cpp.o.provides.build: CMakeFiles/a4.dir/src/Objec
 
 CMakeFiles/a4.dir/src/Octree.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Octree.cpp.o: ../src/Octree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/a4.dir/src/Octree.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Octree.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Octree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/a4.dir/src/Octree.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Octree.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Octree.cpp
 
 CMakeFiles/a4.dir/src/Octree.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Octree.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Octree.cpp > CMakeFiles/a4.dir/src/Octree.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Octree.cpp > CMakeFiles/a4.dir/src/Octree.cpp.i
 
 CMakeFiles/a4.dir/src/Octree.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Octree.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Octree.cpp -o CMakeFiles/a4.dir/src/Octree.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Octree.cpp -o CMakeFiles/a4.dir/src/Octree.cpp.s
 
 CMakeFiles/a4.dir/src/Octree.cpp.o.requires:
 
@@ -323,16 +323,16 @@ CMakeFiles/a4.dir/src/Octree.cpp.o.provides.build: CMakeFiles/a4.dir/src/Octree.
 
 CMakeFiles/a4.dir/src/Renderer.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../src/Renderer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/a4.dir/src/Renderer.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Renderer.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/Renderer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/a4.dir/src/Renderer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/Renderer.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/Renderer.cpp
 
 CMakeFiles/a4.dir/src/Renderer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/Renderer.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/Renderer.cpp > CMakeFiles/a4.dir/src/Renderer.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/Renderer.cpp > CMakeFiles/a4.dir/src/Renderer.cpp.i
 
 CMakeFiles/a4.dir/src/Renderer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/Renderer.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/Renderer.cpp -o CMakeFiles/a4.dir/src/Renderer.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/Renderer.cpp -o CMakeFiles/a4.dir/src/Renderer.cpp.s
 
 CMakeFiles/a4.dir/src/Renderer.cpp.o.requires:
 
@@ -347,16 +347,16 @@ CMakeFiles/a4.dir/src/Renderer.cpp.o.provides.build: CMakeFiles/a4.dir/src/Rende
 
 CMakeFiles/a4.dir/src/SceneParser.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/SceneParser.cpp.o: ../src/SceneParser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/a4.dir/src/SceneParser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/SceneParser.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/SceneParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/a4.dir/src/SceneParser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/SceneParser.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.cpp
 
 CMakeFiles/a4.dir/src/SceneParser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/SceneParser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/SceneParser.cpp > CMakeFiles/a4.dir/src/SceneParser.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.cpp > CMakeFiles/a4.dir/src/SceneParser.cpp.i
 
 CMakeFiles/a4.dir/src/SceneParser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/SceneParser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/SceneParser.cpp -o CMakeFiles/a4.dir/src/SceneParser.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/SceneParser.cpp -o CMakeFiles/a4.dir/src/SceneParser.cpp.s
 
 CMakeFiles/a4.dir/src/SceneParser.cpp.o.requires:
 
@@ -371,16 +371,16 @@ CMakeFiles/a4.dir/src/SceneParser.cpp.o.provides.build: CMakeFiles/a4.dir/src/Sc
 
 CMakeFiles/a4.dir/src/VecUtils.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/VecUtils.cpp.o: ../src/VecUtils.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/a4.dir/src/VecUtils.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/VecUtils.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/VecUtils.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/a4.dir/src/VecUtils.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/VecUtils.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/VecUtils.cpp
 
 CMakeFiles/a4.dir/src/VecUtils.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/VecUtils.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/VecUtils.cpp > CMakeFiles/a4.dir/src/VecUtils.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/VecUtils.cpp > CMakeFiles/a4.dir/src/VecUtils.cpp.i
 
 CMakeFiles/a4.dir/src/VecUtils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/VecUtils.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/VecUtils.cpp -o CMakeFiles/a4.dir/src/VecUtils.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/VecUtils.cpp -o CMakeFiles/a4.dir/src/VecUtils.cpp.s
 
 CMakeFiles/a4.dir/src/VecUtils.cpp.o.requires:
 
@@ -393,42 +393,18 @@ CMakeFiles/a4.dir/src/VecUtils.cpp.o.provides: CMakeFiles/a4.dir/src/VecUtils.cp
 CMakeFiles/a4.dir/src/VecUtils.cpp.o.provides.build: CMakeFiles/a4.dir/src/VecUtils.cpp.o
 
 
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: CMakeFiles/a4.dir/flags.make
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o: ../src/MeshPlus.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/a4.dir/src/MeshPlus.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/MeshPlus.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/MeshPlus.cpp
-
-CMakeFiles/a4.dir/src/MeshPlus.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/MeshPlus.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/MeshPlus.cpp > CMakeFiles/a4.dir/src/MeshPlus.cpp.i
-
-CMakeFiles/a4.dir/src/MeshPlus.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/MeshPlus.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/MeshPlus.cpp -o CMakeFiles/a4.dir/src/MeshPlus.cpp.s
-
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o.requires:
-
-.PHONY : CMakeFiles/a4.dir/src/MeshPlus.cpp.o.requires
-
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o.provides: CMakeFiles/a4.dir/src/MeshPlus.cpp.o.requires
-	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/MeshPlus.cpp.o.provides.build
-.PHONY : CMakeFiles/a4.dir/src/MeshPlus.cpp.o.provides
-
-CMakeFiles/a4.dir/src/MeshPlus.cpp.o.provides.build: CMakeFiles/a4.dir/src/MeshPlus.cpp.o
-
-
 CMakeFiles/a4.dir/src/ObjTriangle.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/ObjTriangle.cpp.o: ../src/ObjTriangle.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/a4.dir/src/ObjTriangle.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/ObjTriangle.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/a4.dir/src/ObjTriangle.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/ObjTriangle.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/ObjTriangle.cpp
 
 CMakeFiles/a4.dir/src/ObjTriangle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/ObjTriangle.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.cpp > CMakeFiles/a4.dir/src/ObjTriangle.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/ObjTriangle.cpp > CMakeFiles/a4.dir/src/ObjTriangle.cpp.i
 
 CMakeFiles/a4.dir/src/ObjTriangle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/ObjTriangle.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.cpp -o CMakeFiles/a4.dir/src/ObjTriangle.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/ObjTriangle.cpp -o CMakeFiles/a4.dir/src/ObjTriangle.cpp.s
 
 CMakeFiles/a4.dir/src/ObjTriangle.cpp.o.requires:
 
@@ -443,16 +419,16 @@ CMakeFiles/a4.dir/src/ObjTriangle.cpp.o.provides.build: CMakeFiles/a4.dir/src/Ob
 
 CMakeFiles/a4.dir/src/TestLoader.cpp.o: CMakeFiles/a4.dir/flags.make
 CMakeFiles/a4.dir/src/TestLoader.cpp.o: ../src/TestLoader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/a4.dir/src/TestLoader.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/TestLoader.cpp.o -c /Users/ange/Desktop/photon-mapping-final/src/TestLoader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/a4.dir/src/TestLoader.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/a4.dir/src/TestLoader.cpp.o -c /Users/ange/Desktop/photon-mapping-final/scrap/src/TestLoader.cpp
 
 CMakeFiles/a4.dir/src/TestLoader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/a4.dir/src/TestLoader.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/src/TestLoader.cpp > CMakeFiles/a4.dir/src/TestLoader.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ange/Desktop/photon-mapping-final/scrap/src/TestLoader.cpp > CMakeFiles/a4.dir/src/TestLoader.cpp.i
 
 CMakeFiles/a4.dir/src/TestLoader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/a4.dir/src/TestLoader.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/src/TestLoader.cpp -o CMakeFiles/a4.dir/src/TestLoader.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ange/Desktop/photon-mapping-final/scrap/src/TestLoader.cpp -o CMakeFiles/a4.dir/src/TestLoader.cpp.s
 
 CMakeFiles/a4.dir/src/TestLoader.cpp.o.requires:
 
@@ -481,7 +457,6 @@ a4_OBJECTS = \
 "CMakeFiles/a4.dir/src/Renderer.cpp.o" \
 "CMakeFiles/a4.dir/src/SceneParser.cpp.o" \
 "CMakeFiles/a4.dir/src/VecUtils.cpp.o" \
-"CMakeFiles/a4.dir/src/MeshPlus.cpp.o" \
 "CMakeFiles/a4.dir/src/ObjTriangle.cpp.o" \
 "CMakeFiles/a4.dir/src/TestLoader.cpp.o"
 
@@ -502,13 +477,12 @@ a4: CMakeFiles/a4.dir/src/Octree.cpp.o
 a4: CMakeFiles/a4.dir/src/Renderer.cpp.o
 a4: CMakeFiles/a4.dir/src/SceneParser.cpp.o
 a4: CMakeFiles/a4.dir/src/VecUtils.cpp.o
-a4: CMakeFiles/a4.dir/src/MeshPlus.cpp.o
 a4: CMakeFiles/a4.dir/src/ObjTriangle.cpp.o
 a4: CMakeFiles/a4.dir/src/TestLoader.cpp.o
 a4: CMakeFiles/a4.dir/build.make
 a4: vecmath/libvecmath.a
 a4: CMakeFiles/a4.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable a4"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable a4"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/a4.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -530,7 +504,6 @@ CMakeFiles/a4.dir/requires: CMakeFiles/a4.dir/src/Octree.cpp.o.requires
 CMakeFiles/a4.dir/requires: CMakeFiles/a4.dir/src/Renderer.cpp.o.requires
 CMakeFiles/a4.dir/requires: CMakeFiles/a4.dir/src/SceneParser.cpp.o.requires
 CMakeFiles/a4.dir/requires: CMakeFiles/a4.dir/src/VecUtils.cpp.o.requires
-CMakeFiles/a4.dir/requires: CMakeFiles/a4.dir/src/MeshPlus.cpp.o.requires
 CMakeFiles/a4.dir/requires: CMakeFiles/a4.dir/src/ObjTriangle.cpp.o.requires
 CMakeFiles/a4.dir/requires: CMakeFiles/a4.dir/src/TestLoader.cpp.o.requires
 
@@ -541,6 +514,6 @@ CMakeFiles/a4.dir/clean:
 .PHONY : CMakeFiles/a4.dir/clean
 
 CMakeFiles/a4.dir/depend:
-	cd /Users/ange/Desktop/photon-mapping-final/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ange/Desktop/photon-mapping-final /Users/ange/Desktop/photon-mapping-final /Users/ange/Desktop/photon-mapping-final/build /Users/ange/Desktop/photon-mapping-final/build /Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/ange/Desktop/photon-mapping-final/scrap/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ange/Desktop/photon-mapping-final/scrap /Users/ange/Desktop/photon-mapping-final/scrap /Users/ange/Desktop/photon-mapping-final/scrap/build /Users/ange/Desktop/photon-mapping-final/scrap/build /Users/ange/Desktop/photon-mapping-final/scrap/build/CMakeFiles/a4.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/a4.dir/depend
 

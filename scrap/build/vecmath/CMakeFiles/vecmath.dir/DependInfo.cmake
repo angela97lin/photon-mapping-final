@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/ange/Desktop/photon-mapping-final/vecmath/Matrix2f.cpp" "/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir/Matrix2f.cpp.o"
-  "/Users/ange/Desktop/photon-mapping-final/vecmath/Matrix3f.cpp" "/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir/Matrix3f.cpp.o"
-  "/Users/ange/Desktop/photon-mapping-final/vecmath/Matrix4f.cpp" "/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir/Matrix4f.cpp.o"
-  "/Users/ange/Desktop/photon-mapping-final/vecmath/Quat4f.cpp" "/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir/Quat4f.cpp.o"
-  "/Users/ange/Desktop/photon-mapping-final/vecmath/Vector2f.cpp" "/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir/Vector2f.cpp.o"
-  "/Users/ange/Desktop/photon-mapping-final/vecmath/Vector3f.cpp" "/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir/Vector3f.cpp.o"
-  "/Users/ange/Desktop/photon-mapping-final/vecmath/Vector4f.cpp" "/Users/ange/Desktop/photon-mapping-final/build/vecmath/CMakeFiles/vecmath.dir/Vector4f.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/scrap/vecmath/Matrix2f.cpp" "/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir/Matrix2f.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/scrap/vecmath/Matrix3f.cpp" "/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir/Matrix3f.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/scrap/vecmath/Matrix4f.cpp" "/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir/Matrix4f.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/scrap/vecmath/Quat4f.cpp" "/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir/Quat4f.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/scrap/vecmath/Vector2f.cpp" "/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir/Vector2f.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/scrap/vecmath/Vector3f.cpp" "/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir/Vector3f.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/scrap/vecmath/Vector4f.cpp" "/Users/ange/Desktop/photon-mapping-final/scrap/build/vecmath/CMakeFiles/vecmath.dir/Vector4f.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
