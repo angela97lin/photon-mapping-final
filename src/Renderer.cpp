@@ -13,18 +13,22 @@
 Renderer::Renderer(const ArgParser &args) : _args(args),
                                             _scene(args.input_file)
 {
-        PhotonMap map = PhotonMap(_args);
 
 }
 
 void Renderer::Render()
 {
+    // First pass: generate photon map.
+    PhotonMap* map = new PhotonMap(_args, 1000);
+    map->generateMap();
+
     int w = _args.width;
     int h = _args.height;
 
     Image image(w, h);
     Image nimage(w, h);
     Image dimage(w, h);
+    Image pimage(w, h);
 
     // loop through all the pixels in the image
     // generate all the samples
@@ -106,6 +110,24 @@ void Renderer::Render()
             }
         }
     }
+
+    // visualize photon map
+    for (int y = 0; y < h; ++y)
+    {
+        float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
+        for (int x = 0; x < w; ++x)
+        {
+            float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
+            Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
+            Hit h;
+            Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
+            pimage.setPixel(x, y, (h.getNormal() + 1.0f) / 2.0f);
+            }
+        
+    }
+
+
+
     // END SOLN
 
     // save the files
@@ -135,22 +157,43 @@ Renderer::traceRay(const Ray &r,
 
     if (_scene.getGroup()->intersect(r, tmin, h))
     {
-
-        // photon has actually hit scene.
-        
         Vector3f hitPoint = r.pointAtParameter(h.getT());
-        Vector3f specular = h.getMaterial()->getSpecularColor();
-        if (specular.abs() == 0)
-        {
-            // diffuse object, store in photon map.
-        }
-        else
-        {
-            // reflective, don't store.
-        }
+        Vector3f ambient = h.getMaterial()->getDiffuseColor() * _scene.getAmbientLight();
         Vector3f diff_spec = Vector3f(0.0f, 0.0f, 0.0f);
 
+        if (_args.shadows)
+        {
+            for (size_t i = 0; i < _scene.getNumLights(); ++i)
+            {
+                Vector3f tolight;
+                Vector3f intensity;
+                float distToLight;
 
+                Light *l = _scene.getLight(i);
+                l->getIllumination(hitPoint, tolight, intensity, distToLight);
+                Vector3f secondaryRayDir = tolight;
+                Vector3f secondaryRayOrigin = hitPoint + EPSILON * secondaryRayDir;
+                Hit hitObject = Hit();
+                Ray pointToLightRay = Ray(secondaryRayOrigin, secondaryRayDir);
+                if (_scene.getGroup()->intersect(pointToLightRay, EPSILON, hitObject))
+                {
+                    Vector3f hitObjectPoint = pointToLightRay.pointAtParameter(hitObject.getT());
+                    float distToIntersection = (hitObjectPoint - secondaryRayOrigin).abs();
+                    if (distToIntersection < std::numeric_limits<float>().max() && distToIntersection > distToLight)
+                    {
+                        diff_spec += h.getMaterial()->shade(r, h, tolight, intensity);
+                    }
+                }
+                else
+                {
+                    diff_spec += h.getMaterial()->shade(r, h, tolight, intensity);
+                }
+            }
+        }
+
+        //shadows not enabled
+        else
+        {
             for (size_t i = 0; i < _scene.getNumLights(); ++i)
             {
                 Vector3f tolight;
@@ -163,10 +206,12 @@ Renderer::traceRay(const Ray &r,
             }
         }
 
+        I += ambient + diff_spec; // direct illumination
 
         //recursive ray tracing
         if (bounces > 0)
         {
+            Vector3f k_s = h.getMaterial()->getSpecularColor();
             Vector3f eye = r.getDirection();
             Vector3f newRayDir = (eye + 2.0f * (Vector3f::dot(-eye, h.getNormal().normalized())) * h.getNormal()).normalized();
             Vector3f newRayOrigin = hitPoint + EPSILON * newRayDir;
@@ -176,7 +221,7 @@ Renderer::traceRay(const Ray &r,
             I += k_s * secondary_ray;
         }
         return I;
-    
+    }
     else
     {
         return _scene.getBackgroundColor(r.getDirection());

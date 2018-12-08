@@ -7,11 +7,7 @@ PerspectiveCamera {
 }
 
 Lights {
-    numLights 2
-    DirectionalLight {
-        direction -0.3 -0.5 -0.5 
-	    color 0.3 0.3 0.3
-    }
+    numLights 1
 
     PointLight {
         position -1 1 -2

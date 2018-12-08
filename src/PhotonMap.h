@@ -4,10 +4,13 @@
 
 struct Photon
 {
-    Vector3f position;
-    Vector3f direction;
-    Vector3f power;
+    Vector3f _position;
+    Vector3f _direction;
 
+    // not sure if power is best stored as a vector?
+    Vector3f _power;
+
+    // Representation from Jensen
     // char p[4];     // power packed as 4 chars
     // char phi, theta; // direction, compressed; unnecessary?
     // float d_x, d_y, d_z; // direction
@@ -21,21 +24,24 @@ class PhotonMap
 public:
 
     // hardcoded for now, can pass as param later.
-    size_t numberOfPhotons = 100;
-    float radius = 0.03;
-    SceneParser _scene;
-    // need _scene for lights.
+    size_t _numberOfPhotons;
+    float _radius;
+    size_t _maxBounces;
+    SceneParser _scene; // need _scene to get lights.
+    
+    // NOTE: will also need some structure to store our photons
+    // efficiently to find nearest neighbors (kdtree)
+    // for irradiance :)
+    // for now, just using a vector until we add kdtree functionality
 
+    std::vector<Photon> _photons;
 
-
-    PhotonMap(const ArgParser &_args);
-    Vector3f
-    traceRay(const Ray &r,
-                   float tmin,
-                   int bounces,
-                   Hit &h) const;
+    PhotonMap(const ArgParser &_args, size_t numberOfPhotons);
+    Vector3f tracePhoton(Photon &p, int bounces);
     void generateMap();
     void storePhoton(Photon& p);
+    Vector3f findRadiance(Vector3f hitPoint, Vector3f normal);
+
 
     // todo:
     // scatter photons (emit photons from light sources)
