@@ -5,10 +5,12 @@
 #include "Ray.h"
 #include "VecUtils.h"
 #include "PhotonMap.h"
+#include "nanoflann.hpp"
 #include <limits>
 #include <random>
 
 #define EPSILON 0.01
+
 
 /* 
 
@@ -53,14 +55,19 @@ How to VISUALIZE photon map?
     -->
 */
 
+
+
+
 PhotonMap::PhotonMap(const ArgParser &_args, size_t numberOfPhotons) : _scene(_args.input_file),
                                                                        _numberOfPhotons(numberOfPhotons)
 {
     _maxBounces = 3; // also hardcoded for now; used to make sure if RR doesn't terminate, we set a bound
     _radius = 0.03;  // hardcoded for now, tbd when we calculate irradiance
+    _getNearest = 20;
 }
 
-// Used for Russian Roulette
+// Used for Russian Roulette,
+// just generates a random float from 0 to max.
 static float generateRandom(float max)
 {
     std::default_random_engine generator;
@@ -90,7 +97,6 @@ void PhotonMap::generateMap()
 
         if (l->_type == 0) // point light, scatter photons randomly
         {
-            printf("found point light!\n");
             while (currentNumPhotons < _numberOfPhotons)
             {
                 // simple rejection algorithm from Jensen
@@ -113,10 +119,15 @@ void PhotonMap::generateMap()
                 // Tracing photons may have produced a number
                 // of photons, so update to determine if we should continue.
                 currentNumPhotons = _photons.size();
-                printf("current number of photons stored: %d\n", currentNumPhotons);
+                // printf("current number of photons stored: %d\n", currentNumPhotons);
             }
         }
+        // for (int i = 0; i < _photons.size(); ++i)
+        // {
+        //     _photons[i]._direction.print();
+        // }
     }
+    // TODO: once we have all of our photons, build KD tree and place all photons in tree.
 }
 
 // currently, just store in vector list
@@ -186,16 +197,20 @@ Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
                 secondaryPhoton->_position = newRayOrigin;
                 secondaryPhoton->_power = k_s * p._power;
                 return tracePhoton(*secondaryPhoton, bounces - 1);
-                
             }
+            return p._power; //? not sure if this is correct thing to do.
         }
+    }
+    else
+    {
+        return _scene.getBackgroundColor(r.getDirection());
     }
 }
 
 
 // This will primarily be used in rendering.
 // TODO:
-// find the irradiance of a point by
+// find the radiance of a point by
 // first finding the N nearest photons,
 // and then using radiance estimate algorithm
 Vector3f PhotonMap::findRadiance(Vector3f hitPoint, Vector3f normal)
@@ -203,6 +218,8 @@ Vector3f PhotonMap::findRadiance(Vector3f hitPoint, Vector3f normal)
     // for now, lets say we have a vector that
     // contains our N nearest points 
     // in reality, need kdtree
+    
+
     float surfaceArea = M_PI * _radius * _radius;
     std::vector<Photon> nearestPhotons;
     for (int i = 0; i < nearestPhotons.size(); ++i)
@@ -225,3 +242,8 @@ Vector3f PhotonMap::findRadiance(Vector3f hitPoint, Vector3f normal)
     // if radiance too small --> ignore
     // if radiance > 1 --> must normalize
 }
+
+
+
+
+

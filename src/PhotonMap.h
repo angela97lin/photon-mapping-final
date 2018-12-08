@@ -1,6 +1,8 @@
 // proposed by Jensen
 #include "nanoflann.hpp"
 #include "Image.h"
+#include <queue>
+
 
 struct Photon
 {
@@ -18,9 +20,11 @@ struct Photon
 };
 
 
+
+
+
 class PhotonMap
 {
-
 public:
 
     // hardcoded for now, can pass as param later.
@@ -28,7 +32,10 @@ public:
     float _radius;
     size_t _maxBounces;
     SceneParser _scene; // need _scene to get lights.
-    
+
+
+    size_t _getNearest; // how many nearest photon to get for radiance calculation?
+
     // NOTE: will also need some structure to store our photons
     // efficiently to find nearest neighbors (kdtree)
     // for irradiance :)
@@ -41,7 +48,6 @@ public:
     void generateMap();
     void storePhoton(Photon& p);
     Vector3f findRadiance(Vector3f hitPoint, Vector3f normal);
-
 
     // todo:
     // scatter photons (emit photons from light sources)
