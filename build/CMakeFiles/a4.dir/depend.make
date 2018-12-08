@@ -117,6 +117,32 @@ CMakeFiles/a4.dir/src/Octree.cpp.o: ../src/Octree.cpp
 CMakeFiles/a4.dir/src/Octree.cpp.o: ../src/Octree.h
 CMakeFiles/a4.dir/src/Octree.cpp.o: ../src/Ray.h
 
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/Matrix2f.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/Matrix3f.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/Matrix4f.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/Quat4f.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/Vector2f.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/Vector3f.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/Vector4f.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../vecmath/include/vecmath.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/ArgParser.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Camera.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/CubeMap.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Image.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Light.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Material.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Mesh.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/ObjTriangle.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Object3D.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Octree.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/PhotonMap.cpp
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/PhotonMap.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Ray.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/Renderer.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/SceneParser.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/VecUtils.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o: ../src/nanoflann.hpp
+
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../vecmath/include/Matrix2f.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../vecmath/include/Matrix3f.h
 CMakeFiles/a4.dir/src/Renderer.cpp.o: ../vecmath/include/Matrix4f.h

@@ -117,6 +117,32 @@ CMakeFiles/a4.dir/src/Octree.cpp.o
  /Users/ange/Desktop/photon-mapping-final/src/Octree.cpp
  /Users/ange/Desktop/photon-mapping-final/src/Octree.h
  /Users/ange/Desktop/photon-mapping-final/src/Ray.h
+CMakeFiles/a4.dir/src/PhotonMap.cpp.o
+ ../vecmath/include/Matrix2f.h
+ ../vecmath/include/Matrix3f.h
+ ../vecmath/include/Matrix4f.h
+ ../vecmath/include/Quat4f.h
+ ../vecmath/include/Vector2f.h
+ ../vecmath/include/Vector3f.h
+ ../vecmath/include/Vector4f.h
+ ../vecmath/include/vecmath.h
+ /Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+ /Users/ange/Desktop/photon-mapping-final/src/Camera.h
+ /Users/ange/Desktop/photon-mapping-final/src/CubeMap.h
+ /Users/ange/Desktop/photon-mapping-final/src/Image.h
+ /Users/ange/Desktop/photon-mapping-final/src/Light.h
+ /Users/ange/Desktop/photon-mapping-final/src/Material.h
+ /Users/ange/Desktop/photon-mapping-final/src/Mesh.h
+ /Users/ange/Desktop/photon-mapping-final/src/ObjTriangle.h
+ /Users/ange/Desktop/photon-mapping-final/src/Object3D.h
+ /Users/ange/Desktop/photon-mapping-final/src/Octree.h
+ /Users/ange/Desktop/photon-mapping-final/src/PhotonMap.cpp
+ /Users/ange/Desktop/photon-mapping-final/src/PhotonMap.h
+ /Users/ange/Desktop/photon-mapping-final/src/Ray.h
+ /Users/ange/Desktop/photon-mapping-final/src/Renderer.h
+ /Users/ange/Desktop/photon-mapping-final/src/SceneParser.h
+ /Users/ange/Desktop/photon-mapping-final/src/VecUtils.h
+ /Users/ange/Desktop/photon-mapping-final/src/nanoflann.hpp
 CMakeFiles/a4.dir/src/Renderer.cpp.o
  ../vecmath/include/Matrix2f.h
  ../vecmath/include/Matrix3f.h

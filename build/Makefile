@@ -379,6 +379,33 @@ src/Octree.cpp.s:
 	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/Octree.cpp.s
 .PHONY : src/Octree.cpp.s
 
+src/PhotonMap.o: src/PhotonMap.cpp.o
+
+.PHONY : src/PhotonMap.o
+
+# target to build an object file
+src/PhotonMap.cpp.o:
+	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/PhotonMap.cpp.o
+.PHONY : src/PhotonMap.cpp.o
+
+src/PhotonMap.i: src/PhotonMap.cpp.i
+
+.PHONY : src/PhotonMap.i
+
+# target to preprocess a source file
+src/PhotonMap.cpp.i:
+	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/PhotonMap.cpp.i
+.PHONY : src/PhotonMap.cpp.i
+
+src/PhotonMap.s: src/PhotonMap.cpp.s
+
+.PHONY : src/PhotonMap.s
+
+# target to generate assembly for a file
+src/PhotonMap.cpp.s:
+	$(MAKE) -f CMakeFiles/a4.dir/build.make CMakeFiles/a4.dir/src/PhotonMap.cpp.s
+.PHONY : src/PhotonMap.cpp.s
+
 src/Renderer.o: src/Renderer.cpp.o
 
 .PHONY : src/Renderer.o
@@ -551,6 +578,9 @@ help:
 	@echo "... src/Octree.o"
 	@echo "... src/Octree.i"
 	@echo "... src/Octree.s"
+	@echo "... src/PhotonMap.o"
+	@echo "... src/PhotonMap.i"
+	@echo "... src/PhotonMap.s"
 	@echo "... src/Renderer.o"
 	@echo "... src/Renderer.i"
 	@echo "... src/Renderer.s"

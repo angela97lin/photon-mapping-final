@@ -21,10 +21,17 @@ class Light
                                  Vector3f &intensity, 
                                  float &distToLight) const = 0;
 
-    int _type;
+
     // type: what type of light? used for photon mapping
     // 0 for Point, 1 for Directional.
     // can later abstract out.
+    int _type;
+    Vector3f _position;
+
+    // How powerful is a light?
+    // More powerful ones will emit more photons.
+    float _wattage; 
+
 };
 
 class DirectionalLight : public Light
@@ -51,11 +58,12 @@ class PointLight : public Light
 {
   public:
     PointLight(const Vector3f &p, const Vector3f &c, float falloff) :
-        _position(p),
         _color(c),
         _falloff(falloff)
     {
       _type = 0;
+      _position = p;
+      _wattage = 1.0;
      }
 
     virtual void getIllumination(const Vector3f &p,
@@ -64,7 +72,7 @@ class PointLight : public Light
         float &distToLight) const override;
 
   private:
-    Vector3f _position;
+    // Vector3f _position;
     Vector3f _color;
     float _falloff;
 };

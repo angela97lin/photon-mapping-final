@@ -216,9 +216,31 @@ vector
 
 /Users/ange/Desktop/photon-mapping-final/src/Octree.h
 
+/Users/ange/Desktop/photon-mapping-final/src/PhotonMap.cpp
+Renderer.h
+/Users/ange/Desktop/photon-mapping-final/src/Renderer.h
+ArgParser.h
+/Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+Camera.h
+/Users/ange/Desktop/photon-mapping-final/src/Camera.h
+Image.h
+/Users/ange/Desktop/photon-mapping-final/src/Image.h
+Ray.h
+/Users/ange/Desktop/photon-mapping-final/src/Ray.h
+VecUtils.h
+/Users/ange/Desktop/photon-mapping-final/src/VecUtils.h
+PhotonMap.h
+/Users/ange/Desktop/photon-mapping-final/src/PhotonMap.h
+limits
+-
+random
+-
+
 /Users/ange/Desktop/photon-mapping-final/src/PhotonMap.h
 nanoflann.hpp
 /Users/ange/Desktop/photon-mapping-final/src/nanoflann.hpp
+Image.h
+/Users/ange/Desktop/photon-mapping-final/src/Image.h
 
 /Users/ange/Desktop/photon-mapping-final/src/Ray.h
 Vector3f.h

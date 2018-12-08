@@ -35,6 +35,8 @@ set(CPP_FILES
     ${SRC_DIR}Renderer.cpp
     ${SRC_DIR}SceneParser.cpp
     ${SRC_DIR}VecUtils.cpp
+    ${SRC_DIR}PhotonMap.cpp
+
     )
 
 set(CPP_HEADERS
@@ -51,6 +53,8 @@ set(CPP_HEADERS
     ${SRC_DIR}Renderer.h
     ${SRC_DIR}SceneParser.h
     ${SRC_DIR}VecUtils.h
+    ${SRC_DIR}PhotonMap.h
+
     )
 set (STB_SRC
    ${SRC_DIR}stb_image.h

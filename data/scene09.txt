@@ -33,18 +33,18 @@ Materials {
     }
 
     PhongMaterial {
-      diffuseColor 0.9 0 0 
+        diffuseColor 0.9 0 0 
     }
 
     PhongMaterial {
-      diffuseColor 0 0.9 0 
+        diffuseColor 0 0.9 0 
     }
 
     PhongMaterial {
-      diffuseColor 0 0 0.9 
+        diffuseColor 0 0 0.9 
     }
 
-        PhongMaterial {
+    PhongMaterial {
         diffuseColor 1 1 1
 	    specularColor 0.4 0.4 0.4
         shininess 1

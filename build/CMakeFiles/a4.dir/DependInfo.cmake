@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/ange/Desktop/photon-mapping-final/src/Mesh.cpp" "/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/src/Mesh.cpp.o"
   "/Users/ange/Desktop/photon-mapping-final/src/Object3D.cpp" "/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/src/Object3D.cpp.o"
   "/Users/ange/Desktop/photon-mapping-final/src/Octree.cpp" "/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/src/Octree.cpp.o"
+  "/Users/ange/Desktop/photon-mapping-final/src/PhotonMap.cpp" "/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/src/PhotonMap.cpp.o"
   "/Users/ange/Desktop/photon-mapping-final/src/Renderer.cpp" "/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/src/Renderer.cpp.o"
   "/Users/ange/Desktop/photon-mapping-final/src/SceneParser.cpp" "/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/src/SceneParser.cpp.o"
   "/Users/ange/Desktop/photon-mapping-final/src/VecUtils.cpp" "/Users/ange/Desktop/photon-mapping-final/build/CMakeFiles/a4.dir/src/VecUtils.cpp.o"
