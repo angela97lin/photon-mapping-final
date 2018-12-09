@@ -1,0 +1,112 @@
+
+PerspectiveCamera {
+    center 0 0 15 
+    direction 0 0 -1
+    up 0 1 0
+    angle 25
+}
+
+Lights {
+    numLights 1
+
+    PointLight {
+      position 0 1.5 0
+	    color 0.65 0.65 0.65
+	    falloff 0.7
+    }
+}
+
+Background {
+    color 0 0 0
+    ambientLight 0.2 0.2 0.2 
+}
+
+Materials {
+    numMaterials 5
+
+    PhongMaterial {
+        diffuseColor 1 1 1
+    }
+
+    PhongMaterial {
+        diffuseColor 0.9 0 0 
+    }
+
+    PhongMaterial {
+        diffuseColor 0 0.9 0 
+    }
+
+    PhongMaterial {
+        diffuseColor 0 0 0.9 
+    }
+
+    PhongMaterial {
+      diffuseColor 1 1 1
+	    specularColor 0.4 0.4 0.4
+      shininess 1
+    }
+}
+
+
+
+Group {
+    numObjects 7
+    MaterialIndex 2
+    Transform {
+ 
+    TriangleMesh {
+        obj_file models/left.obj
+    }
+    }
+
+    MaterialIndex 1
+      Transform {
+
+      TriangleMesh {
+        obj_file models/right.obj
+      }
+    }
+
+    MaterialIndex 0
+      Transform {
+
+      TriangleMesh {
+        obj_file models/back.obj
+      }
+    }
+
+    MaterialIndex 0
+      Transform {
+      TriangleMesh {
+        obj_file models/ceiling.obj
+      }
+    }
+
+    MaterialIndex 0
+        Transform {
+
+    TriangleMesh {
+        obj_file models/floor.obj
+    }
+    }
+
+    MaterialIndex 4
+    Transform {
+    Sphere {
+	    center -0.5 -0.8 -0.1
+        radius 0.40 
+      }
+    }
+
+    MaterialIndex 4
+    Transform {
+    Sphere {
+	    center 0.5 -0.9 0.2
+        radius 0.40 
+      }
+    }
+
+}
+
+
+
