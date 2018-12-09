@@ -281,6 +281,8 @@ SceneParser.h
 /Users/ange/Desktop/photon-mapping-final/src/SceneParser.h
 ArgParser.h
 /Users/ange/Desktop/photon-mapping-final/src/ArgParser.h
+PhotonMap.h
+/Users/ange/Desktop/photon-mapping-final/src/PhotonMap.h
 
 /Users/ange/Desktop/photon-mapping-final/src/SceneParser.cpp
 cstdio

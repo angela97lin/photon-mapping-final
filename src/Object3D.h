@@ -71,8 +71,9 @@ public:
 
     // Return number of objects in group
     int getGroupSize() const;
+        std::vector<Object3D*> m_members;
+
 private:
-    std::vector<Object3D*> m_members;
 };
 
 // TODO: Implement Plane representing an infinite plane

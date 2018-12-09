@@ -219,10 +219,12 @@ CMakeFiles/a4.dir/src/main.cpp.o: ../src/Mesh.h
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/ObjTriangle.h
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/Object3D.h
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/Octree.h
+CMakeFiles/a4.dir/src/main.cpp.o: ../src/PhotonMap.h
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/Ray.h
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/Renderer.h
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/SceneParser.h
 CMakeFiles/a4.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/a4.dir/src/main.cpp.o: ../src/nanoflann.hpp
 
 CMakeFiles/a4.dir/src/stb.cpp.o: ../src/stb.cpp
 CMakeFiles/a4.dir/src/stb.cpp.o: ../src/stb_image.h

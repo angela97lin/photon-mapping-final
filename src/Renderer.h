@@ -5,6 +5,8 @@
 
 #include "SceneParser.h"
 #include "ArgParser.h"
+#include "PhotonMap.h"
+
 
 class Hit;
 class Vector3f;
@@ -20,8 +22,16 @@ class Renderer
     Vector3f traceRay(const Ray &ray, float tmin, int bounces, 
                       Hit &hit) const;
 
+Vector3f
+tracePhotons(const Ray &r,
+                   float tmin,
+                   int bounces,
+                   Hit &h) const;
     ArgParser _args;
     SceneParser _scene;
+    SceneParser _sceneCopy;
+
+    PhotonMap* map;
 };
 
 #endif // RENDERER_H
