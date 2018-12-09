@@ -11,7 +11,6 @@
 
 #define EPSILON 0.01
 
-
 /* 
 
 Photon Mapping: 2 Pass Algorithm
@@ -52,18 +51,17 @@ the intensity of the light values for a certain number of nearby photons.
 
 How to VISUALIZE photon map?
     - We need a way to go from 3D (positions in our scene) to 2D (image coordinates)
-    -->
+    --> add spheres to scene and visualize!
 */
 
-
-
-
 PhotonMap::PhotonMap(const ArgParser &_args, size_t numberOfPhotons) : _scene(_args.input_file),
-                                                                       _numberOfPhotons(numberOfPhotons)
+                                                                       _numberOfPhotons(numberOfPhotons),
+                                                                       index(3 /*dim*/, cloud, KDTreeSingleIndexAdaptorParams(10 /* max leaf */))
+
 {
-    _maxBounces = 3; // also hardcoded for now; used to make sure if RR doesn't terminate, we set a bound
-    _radius = 0.03;  // hardcoded for now, tbd when we calculate irradiance
-    _getNearest = 20;
+    _maxBounces = 3;    // also hardcoded for now; used to make sure if RR doesn't terminate, we set a bound
+    _searchRadius = 10; // hardcoded for now, tbd when we calculate irradiance
+    _getNearest = 10;
 }
 
 // Used for Russian Roulette,
@@ -90,7 +88,6 @@ void PhotonMap::generateMap()
 
     size_t currentNumPhotons = 0;
     int numLights = _scene.getNumLights();
-    printf("number of lights in scene: %d\n", numLights);
     for (int i = 0; i < numLights; ++i)
     {
         Light *l = _scene.getLight(i);
@@ -107,10 +104,13 @@ void PhotonMap::generateMap()
                     y = distribution(generator);
                     z = distribution(generator);
                 } while ((x * x + y * y + z * z) > 1);
-                
+
                 Vector3f dir = Vector3f(x, y, z);
 
                 Photon p;
+                p.x = dir.x();
+                p.y = dir.y();
+                p.z = dir.z();
                 p._position = l->_position; //position as just from the light (?)
                 p._direction = dir;
                 p._power = Vector3f(l->_wattage, l->_wattage, l->_wattage);
@@ -126,17 +126,20 @@ void PhotonMap::generateMap()
         // {
         //     _photons[i]._direction.print();
         // }
+        printf("size of cloud after init: %d\n", cloud.pts.size());
     }
+    index.buildIndex();
+
     // TODO: once we have all of our photons, build KD tree and place all photons in tree.
 }
 
 // currently, just store in vector list
-void PhotonMap::storePhoton(Photon &p)
+// we can later use that list to build our tree.
+void PhotonMap::storePhoton(Photon &photon)
 {
-    _photons.push_back(p);
+    _photons.push_back(photon);
+    cloud.pts.push_back(photon);
 }
-
-
 
 Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
 {
@@ -182,7 +185,7 @@ Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
         }
         else
         {
-            // might also want to check number of photons 
+            // might also want to check number of photons
             // here to see if we even have space for more
             if (bounces > 0)
             {
@@ -193,6 +196,10 @@ Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
                 Vector3f eye = r.getDirection();
                 Vector3f newRayDir = (eye + 2.0f * (Vector3f::dot(-eye, h.getNormal().normalized())) * h.getNormal()).normalized();
                 Vector3f newRayOrigin = hitPoint + EPSILON * newRayDir;
+                secondaryPhoton->x = newRayDir.x();
+                secondaryPhoton->y = newRayDir.y();
+                secondaryPhoton->z = newRayDir.z();
+
                 secondaryPhoton->_direction = newRayDir;
                 secondaryPhoton->_position = newRayOrigin;
                 secondaryPhoton->_power = k_s * p._power;
@@ -207,7 +214,6 @@ Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
     }
 }
 
-
 // This will primarily be used in rendering.
 // TODO:
 // find the radiance of a point by
@@ -216,34 +222,45 @@ Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
 Vector3f PhotonMap::findRadiance(Vector3f hitPoint, Vector3f normal)
 {
     // for now, lets say we have a vector that
-    // contains our N nearest points 
+    // contains our N nearest points
     // in reality, need kdtree
-    
+    const float query_pt[3] = {hitPoint.x(), hitPoint.y(), hitPoint.z()};
+    // find N closest points
 
-    float surfaceArea = M_PI * _radius * _radius;
-    std::vector<Photon> nearestPhotons;
-    for (int i = 0; i < nearestPhotons.size(); ++i)
+    std::vector<std::pair<size_t, float>> ret_matches;
+    nanoflann::SearchParams params;
+    params.sorted = true;
+    size_t num_results = index.radiusSearch(&query_pt[0], _searchRadius, ret_matches, params);
+    float radius_2; // used to determine our radiance via spherical SA.
+    if (num_results > _getNearest)
     {
-        Vector3f dir = nearestPhotons[i]._direction;
+        num_results = _getNearest;
+        radius_2 = ret_matches[num_results - 1].second * ret_matches[num_results - 1].second;
+    }
+    else
+    {
+        radius_2 = _searchRadius * _searchRadius;
+    }
+    // Calculate radiance
+    float surfaceArea = 4.0f * M_PI * radius_2;
+
+    for (int i = 0; i < num_results; ++i)
+    {
+        size_t index = ret_matches[i].first;
+        Photon photon = cloud.pts[index];
+        Vector3f dir = photon._direction;
         float angle = Vector3f::dot(normal, dir);
         if (angle > 0)
         {
             // intensity × (d · N) × diffuse-factor
         }
-        else 
+        else
         {
-        // facing inwards to surface and thus, don't consider
-
+            // facing inwards to surface and thus, don't consider
         }
-
+        // cloud.pts[ret_matches[i].first]._direction.print();
     }
-    return Vector3f(0.0f);
 
     // if radiance too small --> ignore
     // if radiance > 1 --> must normalize
 }
-
-
-
-
-

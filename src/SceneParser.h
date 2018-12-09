@@ -60,7 +60,7 @@ class SceneParser
     }
 
    std::vector<Light*> lights;
-  private:
+
     void parseFile();
     void parsePerspectiveCamera();
     void parseBackground();
@@ -97,6 +97,7 @@ class SceneParser
     Material * _current_material;
     Group * _group;
     CubeMap * _cubemap;
-};
+  private:
+  };
 
 #endif // SCENE_PARSER_H

@@ -22,6 +22,7 @@ class Renderer
 
     ArgParser _args;
     SceneParser _scene;
+
 };
 
 #endif // RENDERER_H
