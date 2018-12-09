@@ -63,6 +63,15 @@ PhotonMap::PhotonMap(const ArgParser &_args, size_t numberOfPhotons) : _scene(_a
     _maxBounces = 3;    // also hardcoded for now; used to make sure if RR doesn't terminate, we set a bound
     _searchRadius = 10; // hardcoded for now, tbd when we calculate irradiance
     _getNearest = 10;
+
+
+	for (int i = 0; i<256; i++) {
+		double angle = double(i)*(1.0/256.0)*M_PI;
+		costheta[i] = cos(angle);
+		sintheta[i] = sin(angle);
+		cosphi[i] = cos(2.0*angle);
+		sinphi[i] = sin(2.0*angle);
+	}
 }
 
 // Used for Russian Roulette,
@@ -101,13 +110,14 @@ void PhotonMap::generateMap()
                 double x, y, z;
                 do
                 {
-                    x = distribution(generator);
-                    y = distribution(generator);
-                    z = distribution(generator);
-                } while ((x * x + y * y + z * z) > 1);
+                    x = ((float(rand()) / float(RAND_MAX)) * (2.0f)) - 1.0f;
 
-                Vector3f dir = Vector3f(x, y, z);
+                    y = ((float(rand()) / float(RAND_MAX)) * (2.0f)) - 1.0f;
+                    z = ((float(rand()) / float(RAND_MAX)) * (2.0f)) - 1.0f;
+                } while ((x * x + y * y + z * z) > 1.0);
 
+                Vector3f dir = Vector3f(x, y, z).normalized();
+                dir.print();
                 Photon p;
                 p.x = dir.x();
                 p.y = dir.y();
@@ -115,12 +125,34 @@ void PhotonMap::generateMap()
                 p._position = l->_position; 
                 p._direction = dir;
                 p._power = l->_power;
+
+                Ray r = Ray(p._position, p._direction);
+                Hit h;
+                          Camera *cam = _scene.getCamera();
+            float tmin = cam->getTMin();
+                if (_scene.getGroup()->intersect(r, tmin, h))
+    {
+        
+        // Use diffuse and specular values to determine
+        // what kind of material we have.
+        // We also need this for our Russian Roulette to determine
+        // whether we should store the photon
+        // and with what probability we should absorb, reflect, transmit (?)
+        
+            // Update values and store:
+            Vector3f hitPoint = r.pointAtParameter(h.getT());
+            p.x = hitPoint.x();
+            p.y = hitPoint.y();
+            p.z = hitPoint.z();
+            p._position = hitPoint;
+
                 tracePhoton(p, _maxBounces);
 
                 // Tracing photons may have produced a number
                 // of photons, so update to determine if we should continue.
                 currentNumPhotons = _photons.size();
                 // printf("current number of photons stored: %d\n", currentNumPhotons);
+            }
             }
         }
         // for (int i = 0; i < _photons.size(); ++i)
@@ -174,6 +206,7 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
             p.z = hitPoint.z();
             p._position = hitPoint;
             // p._direction --> stays the same (?)
+            printf("number of bounces left: %d", bounces);
             storePhoton(p);
         }
 
@@ -195,7 +228,7 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
         // then, modify power and direction and bounce again until limit reached
         
         float randNum = generateRandom(1.0);
-        if (randNum < 0.7) // absorb
+        if (randNum < 0.6) // absorb
         {
             // "Absorption is the general termination condition upon which
             // we then store it in the photon map."
@@ -221,7 +254,7 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
 
                 p._direction = newRayDir;
                 p._position = newRayOrigin;
-                // p._power = p._power;
+                p._power = 0.6 * p._power;
                 tracePhoton(p, bounces - 1);
             }
             return;

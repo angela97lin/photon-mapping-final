@@ -9,7 +9,7 @@ PerspectiveCamera {
 Lights {
     numLights 1
         PointLight {
-        position 0 0.9 0
+        position 0 1.1 0
 	    color 1.4 1.4 1.4
 	    falloff 0.7
     }

@@ -73,7 +73,10 @@ class PhotonMap
     // for now, just using a vector until we add kdtree functionality
 
     std::vector<Photon> _photons;
-
+	float costheta[256];
+	float sintheta[256];
+	float cosphi[256];
+	float sinphi[256];
     PhotonMap(const ArgParser &_args, size_t numberOfPhotons);
     void tracePhoton(Photon &p, int bounces);
     void generateMap();

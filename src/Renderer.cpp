@@ -43,73 +43,73 @@ void Renderer::Render()
     // significantly, when compared to checking for jittering within
     // the for loop :O
 
-    // if (_args.jitter)
-    // {
-    //     for (int y = 0; y < h; ++y)
-    //     {
-    //         for (int x = 0; x < w; ++x)
-    //         {
-    //             Vector3f avg_color;
-    //             for (int sample = 0; sample < NUM_SAMPLES; ++sample)
-    //             {
-    //                 float LO = -0.4;
-    //                 float HI = 0.4;
-    //                 float rand_jitter = LO + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (HI - LO)));
+    if (_args.jitter)
+    {
+        for (int y = 0; y < h; ++y)
+        {
+            for (int x = 0; x < w; ++x)
+            {
+                Vector3f avg_color;
+                for (int sample = 0; sample < NUM_SAMPLES; ++sample)
+                {
+                    float LO = -0.4;
+                    float HI = 0.4;
+                    float rand_jitter = LO + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (HI - LO)));
 
-    //                 float ndcy = (2 * ((y + rand_jitter) / (h - 1.0f)) - 1.0f);
-    //                 float ndcx = (2 * ((x + rand_jitter) / (w - 1.0f)) - 1.0f);
-    //                 // Use PerspectiveCamera to generate a ray.
+                    float ndcy = (2 * ((y + rand_jitter) / (h - 1.0f)) - 1.0f);
+                    float ndcx = (2 * ((x + rand_jitter) / (w - 1.0f)) - 1.0f);
+                    // Use PerspectiveCamera to generate a ray.
 
-    //                 Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
-    //                 Hit h;
-    //                 Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
-    //                 avg_color += color;
-    //             }
+                    Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
+                    Hit h;
+                    Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
+                    avg_color += color;
+                }
 
-    //             avg_color = avg_color / (float)NUM_SAMPLES;
-    //             image.setPixel(x, y, avg_color);
-    //         }
-    //     }
-    // }
+                avg_color = avg_color / (float)NUM_SAMPLES;
+                image.setPixel(x, y, avg_color);
+            }
+        }
+    }
 
-    // else
-    // {
-    //     for (int y = 0; y < h; ++y)
-    //     {
-    //         for (int x = 0; x < w; ++x)
-    //         {
-    //             float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
-    //             float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
-    //             Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
+    else
+    {
+        for (int y = 0; y < h; ++y)
+        {
+            for (int x = 0; x < w; ++x)
+            {
+                float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
+                float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
+                Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
 
-    //             Hit h;
-    //             Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
+                Hit h;
+                Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
 
-    //             image.setPixel(x, y, color);
-    //         }
-    //     }
-    // }
-    // // calculate normal and depth separately
-    // for (int y = 0; y < h; ++y)
-    // {
-    //     float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
-    //     for (int x = 0; x < w; ++x)
-    //     {
-    //         float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
-    //         // Use PerspectiveCamera to generate a ray.
-    //         // You should understand what generateRay() does.
-    //         Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
-    //         Hit h;
-    //         Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
+                image.setPixel(x, y, color);
+            }
+        }
+    }
+    // calculate normal and depth separately
+    for (int y = 0; y < h; ++y)
+    {
+        float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
+        for (int x = 0; x < w; ++x)
+        {
+            float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
+            // Use PerspectiveCamera to generate a ray.
+            // You should understand what generateRay() does.
+            Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
+            Hit h;
+            Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
 
-    //         nimage.setPixel(x, y, (h.getNormal() + 1.0f) / 2.0f);
-    //         float range = (_args.depth_max - _args.depth_min);
-    //         if (range)
-    //         {
-    //             dimage.setPixel(x, y, Vector3f((h.t - _args.depth_min) / range));
-    //         }
-    //     }
-    // }
+            nimage.setPixel(x, y, (h.getNormal() + 1.0f) / 2.0f);
+            float range = (_args.depth_max - _args.depth_min);
+            if (range)
+            {
+                dimage.setPixel(x, y, Vector3f((h.t - _args.depth_min) / range));
+            }
+        }
+    }
 
     //_sceneCopy._group->m_members.clear();
     for (int i = 0; i < map->cloud.pts.size(); ++i)
@@ -138,11 +138,11 @@ void Renderer::Render()
 
     // END SOLN
 
-    // // save the files
-    // if (_args.output_file.size())
-    // {
-    //     image.savePNG(_args.output_file);
-    // }
+    // save the files
+    if (_args.output_file.size())
+    {
+        image.savePNG(_args.output_file);
+    }
     // if (_args.depth_file.size())
     // {
     //     dimage.savePNG(_args.depth_file);
@@ -152,7 +152,7 @@ void Renderer::Render()
     //     nimage.savePNG(_args.normals_file);
     // }
 
-    pimage.savePNG("test_photon_map.png");
+    pimage.savePNG(_args.normals_file);
 }
 
 Vector3f
