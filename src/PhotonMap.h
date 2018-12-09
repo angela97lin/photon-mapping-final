@@ -10,15 +10,7 @@ struct Photon
     float x, y, z;
     Vector3f _position;
     Vector3f _direction;
-
-    // not sure if power is best stored as a vector?
     Vector3f _power;
-
-    // Representation from Jensen
-    // char p[4];     // power packed as 4 chars
-    // char phi, theta; // direction, compressed; unnecessary?
-    // float d_x, d_y, d_z; // direction
-    // short flag;          // flag used in kdtree
 };
 #pragma once
 struct PointCloud
@@ -83,7 +75,7 @@ class PhotonMap
     std::vector<Photon> _photons;
 
     PhotonMap(const ArgParser &_args, size_t numberOfPhotons);
-    Vector3f tracePhoton(Photon &p, int bounces);
+    void tracePhoton(Photon &p, int bounces);
     void generateMap();
     void storePhoton(Photon &p);
     Vector3f findRadiance(Vector3f hitPoint, Vector3f normal);

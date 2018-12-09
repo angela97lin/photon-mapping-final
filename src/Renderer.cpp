@@ -19,7 +19,7 @@ Renderer::Renderer(const ArgParser &args) : _args(args),
 void Renderer::Render()
 {
     // First pass: generate photon map.
-    map = new PhotonMap(_args, 100); // lol delete in destructor to not leak
+    map = new PhotonMap(_args, 1000); // lol delete in destructor to not leak
     map->generateMap();
 
     int w = _args.width;
@@ -111,14 +111,14 @@ void Renderer::Render()
     //     }
     // }
 
-    _sceneCopy._group->m_members.clear();
+    //_sceneCopy._group->m_members.clear();
     for (int i = 0; i < map->cloud.pts.size(); ++i)
     {
-        Vector3f diffuse(1.0, 1.0, 1.0);
+        Vector3f diffuse = map->cloud.pts[i]._power;
         Material m = Material(diffuse);
         Vector3f p = map->cloud.pts[i]._position;
-        p.print();
-        Sphere *_s = new Sphere(p, 1.0f, &m);
+        // p.print();
+        Sphere *_s = new Sphere(p, 0.03f, &m);
         _sceneCopy.getGroup()->addObject((Object3D *)_s);
     }
 
@@ -255,25 +255,23 @@ Renderer::tracePhotons(const Ray &r,
     if (intersected)
     {
         Vector3f hitPoint = r.pointAtParameter(h.getT());
-        Vector3f ambient = h.getMaterial()->getDiffuseColor() * _sceneCopy.getAmbientLight();
-        Vector3f diff_spec = Vector3f(0.0f, 0.0f, 0.0f);
+        
+        // Vector3f ambient = h.getMaterial()->getDiffuseColor() * _sceneCopy.getAmbientLight();
+        // Vector3f diff_spec = Vector3f(0.0f, 0.0f, 0.0f);
 
-        for (size_t i = 0; i < _scene.getNumLights(); ++i)
-        {
-            Vector3f tolight;
-            Vector3f intensity;
-            float distToLight;
+        // for (size_t i = 0; i < _scene.getNumLights(); ++i)
+        // {
+        //     Vector3f tolight;
+        //     Vector3f intensity;
+        //     float distToLight;
 
-            Light *l = _scene.getLight(i);
-            l->getIllumination(hitPoint, tolight, intensity, distToLight);
-
-            map->findRadiance(hitPoint, h.getNormal());
-
-            diff_spec += h.getMaterial()->shade(r, h, tolight, intensity);
-        }
-
-        I += ambient + diff_spec; // direct illumination
-
+        //     Light *l = _scene.getLight(i);
+        //     l->getIllumination(hitPoint, tolight, intensity, distToLight);
+        //     diff_spec += h.getMaterial()->shade(r, h, tolight, intensity);
+        // }
+        
+        // I += ambient + diff_spec; // direct illumination
+        I = h.getMaterial()->getDiffuseColor();
         return I;
     }
     else

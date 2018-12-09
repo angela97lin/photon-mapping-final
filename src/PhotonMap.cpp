@@ -10,6 +10,7 @@
 #include <random>
 
 #define EPSILON 0.01
+#define WEAK_LIGHT 0.001
 
 /* 
 
@@ -111,9 +112,9 @@ void PhotonMap::generateMap()
                 p.x = dir.x();
                 p.y = dir.y();
                 p.z = dir.z();
-                p._position = l->_position; //position as just from the light (?)
+                p._position = l->_position; 
                 p._direction = dir;
-                p._power = Vector3f(l->_wattage, l->_wattage, l->_wattage);
+                p._power = l->_power;
                 tracePhoton(p, _maxBounces);
 
                 // Tracing photons may have produced a number
@@ -128,9 +129,9 @@ void PhotonMap::generateMap()
         // }
         printf("size of cloud after init: %d\n", cloud.pts.size());
     }
+    // Build KD tree and place all photons in tree.
     index.buildIndex();
 
-    // TODO: once we have all of our photons, build KD tree and place all photons in tree.
 }
 
 // currently, just store in vector list
@@ -141,8 +142,15 @@ void PhotonMap::storePhoton(Photon &photon)
     cloud.pts.push_back(photon);
 }
 
-Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
+void PhotonMap::tracePhoton(Photon &p, int bounces)
 {
+    // if a photon is extremely weak, we won't even consider it since
+    // its contribution will be minimal
+    if (p._power.abs() < WEAK_LIGHT)
+    {
+        return;
+    }
+
     Camera *cam = _scene.getCamera();
     float tmin = cam->getTMin();
 
@@ -150,19 +158,30 @@ Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
     Hit h;
     if (_scene.getGroup()->intersect(r, tmin, h))
     {
+        
         Vector3f hitPoint = r.pointAtParameter(h.getT());
-
         // Use diffuse and specular values to determine
         // what kind of material we have.
         // We also need this for our Russian Roulette to determine
         // whether we should store the photon
         // and with what probability we should absorb, reflect, transmit (?)
-        // Q: is diffuse the same as diffuse const?
-        // Vector3f diffuse = h.getMaterial()->getDiffuseColor();
-        // float diffuseMagnitude = diffuse.abs();
-        // Vector3f specular = h.getMaterial()->getSpecularColor();
-        // float specularMagnitude = specular.abs();
+        if (h.getMaterial()->isDiffusive())
+        {            
+            // Update values and store:
+            Vector3f hitPoint = r.pointAtParameter(h.getT());
+            p.x = hitPoint.x();
+            p.y = hitPoint.y();
+            p.z = hitPoint.z();
+            p._position = hitPoint;
+            // p._direction --> stays the same (?)
+            storePhoton(p);
+        }
 
+
+        Vector3f diffuse = h.getMaterial()->getDiffuseColor();
+        float diffuseMagnitude = diffuse.abs();
+        Vector3f specular = h.getMaterial()->getSpecularColor();
+        float specularMagnitude = specular.abs();
         // float probabilitySum = diffuseMagnitude + specularMagnitude;
         // float r = generateRandom(probabilitySum);
 
@@ -174,44 +193,41 @@ Vector3f PhotonMap::tracePhoton(Photon &p, int bounces)
 
         // if diffuse, store power, position, direction in map
         // then, modify power and direction and bounce again until limit reached
-
+        
         float randNum = generateRandom(1.0);
-        if (randNum < 0.5) // absorb
+        if (randNum < 0.7) // absorb
         {
             // "Absorption is the general termination condition upon which
             // we then store it in the photon map."
             storePhoton(p);
-            return p._power;
+
+            return;
         }
+
         else
         {
             // might also want to check number of photons
             // here to see if we even have space for more
             if (bounces > 0)
             {
-                Photon *secondaryPhoton;
-
                 // use BRDF of surface in order to calculate new direction.
                 Vector3f k_s = h.getMaterial()->getSpecularColor();
                 Vector3f eye = r.getDirection();
                 Vector3f newRayDir = (eye + 2.0f * (Vector3f::dot(-eye, h.getNormal().normalized())) * h.getNormal()).normalized();
                 Vector3f newRayOrigin = hitPoint + EPSILON * newRayDir;
-                secondaryPhoton->x = newRayDir.x();
-                secondaryPhoton->y = newRayDir.y();
-                secondaryPhoton->z = newRayDir.z();
+                p.x = newRayDir.x();
+                p.y = newRayDir.y();
+                p.z = newRayDir.z();
 
-                secondaryPhoton->_direction = newRayDir;
-                secondaryPhoton->_position = newRayOrigin;
-                secondaryPhoton->_power = k_s * p._power;
-                return tracePhoton(*secondaryPhoton, bounces - 1);
+                p._direction = newRayDir;
+                p._position = newRayOrigin;
+                // p._power = p._power;
+                tracePhoton(p, bounces - 1);
             }
-            return p._power; //? not sure if this is correct thing to do.
+            return;
         }
     }
-    else
-    {
-        return _scene.getBackgroundColor(r.getDirection());
-    }
+    return;
 }
 
 // This will primarily be used in rendering.

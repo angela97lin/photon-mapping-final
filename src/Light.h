@@ -25,13 +25,10 @@ class Light
     // type: what type of light? used for photon mapping
     // 0 for Point, 1 for Directional.
     // can later abstract out.
-    // currently only handling 0's
+    // [currently only handling 0's]
     int _type;
     Vector3f _position;
-
-    // How powerful is a light?
-    // More powerful ones will emit more photons.
-    float _wattage; 
+    Vector3f _power;
 
 };
 
@@ -64,7 +61,7 @@ class PointLight : public Light
     {
       _type = 0;
       _position = p;
-      _wattage = 100.0;
+      _power = Vector3f(10.0f,10.0f,10.0f);
      }
 
     virtual void getIllumination(const Vector3f &p,

@@ -34,6 +34,12 @@ class Material
         const Vector3f &dirToLight,
         const Vector3f &lightIntensity);
 
+    // Material is considered diffusive if not specular at all.
+    const bool isDiffusive() const {
+        return (_specularColor.absSquared() == 0);
+    }
+
+
 protected:
 
     Vector3f _diffuseColor;

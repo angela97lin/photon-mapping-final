@@ -1,4 +1,6 @@
 #include "Material.h"
+
+
 Vector3f Material::shade(const Ray &ray,
     const Hit &hit,
     const Vector3f &dirToLight,
