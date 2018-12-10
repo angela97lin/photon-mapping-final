@@ -61,7 +61,7 @@ class PointLight : public Light
     {
       _type = 0;
       _position = p;
-      _power = Vector3f(10.0f,10.0f,10.0f);
+      _power = Vector3f(0.02f,0.02f,0.02f);
      }
 
     virtual void getIllumination(const Vector3f &p,

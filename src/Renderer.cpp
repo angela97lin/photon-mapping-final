@@ -19,7 +19,7 @@ Renderer::Renderer(const ArgParser &args) : _args(args),
 void Renderer::Render()
 {
     // First pass: generate photon map.
-    map = new PhotonMap(_args, 1000); // lol delete in destructor to not leak
+    map = new PhotonMap(_args, 500); // lol delete in destructor to not leak
     map->generateMap();
 
     int w = _args.width;
@@ -28,7 +28,8 @@ void Renderer::Render()
     Image image(w, h);
     Image nimage(w, h);
     Image dimage(w, h);
-    Image pimage(w, h);
+    Image pimage(w, h); // visualize photon map position
+    Image rimage(w, h); // visualize radiance
 
     // loop through all the pixels in the image
     // generate all the samples
@@ -84,32 +85,32 @@ void Renderer::Render()
 
                 Hit h;
                 Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
-
                 image.setPixel(x, y, color);
             }
         }
     }
-    // calculate normal and depth separately
-    for (int y = 0; y < h; ++y)
-    {
-        float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
-        for (int x = 0; x < w; ++x)
-        {
-            float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
-            // Use PerspectiveCamera to generate a ray.
-            // You should understand what generateRay() does.
-            Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
-            Hit h;
-            Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
 
-            nimage.setPixel(x, y, (h.getNormal() + 1.0f) / 2.0f);
-            float range = (_args.depth_max - _args.depth_min);
-            if (range)
-            {
-                dimage.setPixel(x, y, Vector3f((h.t - _args.depth_min) / range));
-            }
-        }
-    }
+    // calculate normal and depth separately
+    // for (int y = 0; y < h; ++y)
+    // {
+    //     float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
+    //     for (int x = 0; x < w; ++x)
+    //     {
+    //         float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
+    //         // Use PerspectiveCamera to generate a ray.
+    //         // You should understand what generateRay() does.
+    //         Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
+    //         Hit h;
+    //         Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
+
+    //         nimage.setPixel(x, y, (h.getNormal() + 1.0f) / 2.0f);
+    //         float range = (_args.depth_max - _args.depth_min);
+    //         if (range)
+    //         {
+    //             dimage.setPixel(x, y, Vector3f((h.t - _args.depth_min) / range));
+    //         }
+    //     }
+    // }
 
     //_sceneCopy._group->m_members.clear();
     for (int i = 0; i < map->cloud.pts.size(); ++i)
@@ -118,7 +119,7 @@ void Renderer::Render()
         Material m = Material(diffuse);
         Vector3f p = map->cloud.pts[i]._position;
         // p.print();
-        Sphere *_s = new Sphere(p, 0.03f, &m);
+        Sphere *_s = new Sphere(p, 0.025f, &m);
         _sceneCopy.getGroup()->addObject((Object3D *)_s);
     }
 
@@ -131,12 +132,25 @@ void Renderer::Render()
             float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
             Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
             Hit h;
-            Vector3f color = tracePhotons(r, cam->getTMin(), _args.bounces, h);
-            pimage.setPixel(x, y, (h.getNormal() + 1.0f) / 2.0f);
+            Vector3f color = tracePhotons(r, cam->getTMin(), h);
+            pimage.setPixel(x, y, color);
         }
     }
 
-    // END SOLN
+
+    // visualize irradiance
+    for (int y = 0; y < h; ++y)
+    {
+        float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
+        for (int x = 0; x < w; ++x)
+        {
+            float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
+            Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
+            Hit h;
+            Vector3f color = drawRadiance(r, cam->getTMin(), h);
+            rimage.setPixel(x, y, color);
+        }
+    }
 
     // save the files
     if (_args.output_file.size())
@@ -153,6 +167,8 @@ void Renderer::Render()
     // }
 
     pimage.savePNG(_args.normals_file);
+    rimage.savePNG(_args.depth_file);
+
 }
 
 Vector3f
@@ -181,9 +197,6 @@ Renderer::traceRay(const Ray &r,
 
                 Light *l = _scene.getLight(i);
                 l->getIllumination(hitPoint, tolight, intensity, distToLight);
-
-                map->findRadiance(hitPoint, h.getNormal());
-
                 Vector3f secondaryRayDir = tolight;
                 Vector3f secondaryRayOrigin = hitPoint + EPSILON * secondaryRayDir;
                 Hit hitObject = Hit();
@@ -218,7 +231,6 @@ Renderer::traceRay(const Ray &r,
                 diff_spec += h.getMaterial()->shade(r, h, tolight, intensity);
             }
         }
-
         I += ambient + diff_spec; // direct illumination
 
         //recursive ray tracing
@@ -233,6 +245,9 @@ Renderer::traceRay(const Ray &r,
             Vector3f secondary_ray = traceRay(newRay, 0.0f, bounces - 1, newH);
             I += k_s * secondary_ray;
         }
+
+        I += map->findRadiance(h, hitPoint, h.getNormal());
+
         return I;
     }
     else
@@ -243,40 +258,45 @@ Renderer::traceRay(const Ray &r,
 }
 
 Vector3f
-Renderer::tracePhotons(const Ray &r,
+Renderer::drawRadiance(const Ray &r,
                        float tmin,
-                       int bounces,
                        Hit &h) const
 {
 
     Vector3f I = Vector3f(0.0f, 0.0f, 0.0f);
     bool intersected = _sceneCopy.getGroup()->intersect(r, tmin, h);
-
     if (intersected)
     {
         Vector3f hitPoint = r.pointAtParameter(h.getT());
-        
-        // Vector3f ambient = h.getMaterial()->getDiffuseColor() * _sceneCopy.getAmbientLight();
-        // Vector3f diff_spec = Vector3f(0.0f, 0.0f, 0.0f);
+        I = map->findRadiance(h, hitPoint, h.getNormal());
+        return I;
+    }
+    else
+    {
 
-        // for (size_t i = 0; i < _scene.getNumLights(); ++i)
-        // {
-        //     Vector3f tolight;
-        //     Vector3f intensity;
-        //     float distToLight;
+        return Vector3f(0.0f);
+    };
+}
 
-        //     Light *l = _scene.getLight(i);
-        //     l->getIllumination(hitPoint, tolight, intensity, distToLight);
-        //     diff_spec += h.getMaterial()->shade(r, h, tolight, intensity);
-        // }
-        
-        // I += ambient + diff_spec; // direct illumination
+Vector3f
+Renderer::tracePhotons(const Ray &r,
+                       float tmin,
+                       Hit &h) const
+{
+
+    Vector3f I = Vector3f(0.0f, 0.0f, 0.0f);
+    bool intersected = _sceneCopy.getGroup()->intersect(r, tmin, h);
+    if (intersected)
+    {
+        Vector3f hitPoint = r.pointAtParameter(h.getT());
         I = h.getMaterial()->getDiffuseColor();
         return I;
     }
     else
     {
 
-        return _scene.getBackgroundColor(r.getDirection());
+        return Vector3f(0.0f);
     };
 }
+
+

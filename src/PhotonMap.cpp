@@ -50,10 +50,21 @@ the intensity of the light values for a certain number of nearby photons.
 
 
 
+
 How to VISUALIZE photon map?
     - We need a way to go from 3D (positions in our scene) to 2D (image coordinates)
     --> add spheres to scene and visualize!
 */
+
+// Get luminance value from color
+float PhotonMap::getLuminance(Photon &p)
+{
+    Vector3f color = p._power;
+    float R = color.x();
+    float G = color.y();
+    float B = color.z();
+    return 0.2126f * R + 0.7152f * G + 0.0722f * B;
+}
 
 PhotonMap::PhotonMap(const ArgParser &_args, size_t numberOfPhotons) : _scene(_args.input_file),
                                                                        _numberOfPhotons(numberOfPhotons),
@@ -63,24 +74,19 @@ PhotonMap::PhotonMap(const ArgParser &_args, size_t numberOfPhotons) : _scene(_a
     _maxBounces = 3;    // also hardcoded for now; used to make sure if RR doesn't terminate, we set a bound
     _searchRadius = 10; // hardcoded for now, tbd when we calculate irradiance
     _getNearest = 10;
-
-
-	for (int i = 0; i<256; i++) {
-		double angle = double(i)*(1.0/256.0)*M_PI;
-		costheta[i] = cos(angle);
-		sintheta[i] = sin(angle);
-		cosphi[i] = cos(2.0*angle);
-		sinphi[i] = sin(2.0*angle);
-	}
 }
 
 // Used for Russian Roulette,
 // just generates a random float from 0 to max.
-static float generateRandom(float max)
+static float generateRandom(float min, float max)
 {
-    std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(0, max);
-    return (float)distribution(generator);
+    // std::default_random_engine generator;
+    // std::uniform_real_distribution<double> distribution(0, max);
+    // return (float)distribution(generator);
+    std::random_device rd;  //Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+    std::uniform_real_distribution<> dis(min, max);
+    return (float)dis(gen);
 }
 
 void PhotonMap::generateMap()
@@ -117,53 +123,49 @@ void PhotonMap::generateMap()
                 } while ((x * x + y * y + z * z) > 1.0);
 
                 Vector3f dir = Vector3f(x, y, z).normalized();
-                dir.print();
+                // dir.print();
                 Photon p;
                 p.x = dir.x();
                 p.y = dir.y();
                 p.z = dir.z();
-                p._position = l->_position; 
+                p._position = l->_position;
                 p._direction = dir;
                 p._power = l->_power;
 
                 Ray r = Ray(p._position, p._direction);
                 Hit h;
-                          Camera *cam = _scene.getCamera();
-            float tmin = cam->getTMin();
+                Camera *cam = _scene.getCamera();
+                float tmin = cam->getTMin();
                 if (_scene.getGroup()->intersect(r, tmin, h))
-    {
-        
-        // Use diffuse and specular values to determine
-        // what kind of material we have.
-        // We also need this for our Russian Roulette to determine
-        // whether we should store the photon
-        // and with what probability we should absorb, reflect, transmit (?)
-        
-            // Update values and store:
-            Vector3f hitPoint = r.pointAtParameter(h.getT());
-            p.x = hitPoint.x();
-            p.y = hitPoint.y();
-            p.z = hitPoint.z();
-            p._position = hitPoint;
+                {
 
-                tracePhoton(p, _maxBounces);
+                    // Use diffuse and specular values to determine
+                    // what kind of material we have.
+                    // We also need this for our Russian Roulette to determine
+                    // whether we should store the photon
+                    // and with what probability we should absorb, reflect, transmit (?)
 
-                // Tracing photons may have produced a number
-                // of photons, so update to determine if we should continue.
-                currentNumPhotons = _photons.size();
-                // printf("current number of photons stored: %d\n", currentNumPhotons);
-            }
+                    // Update values and store:
+                    Vector3f hitPoint = r.pointAtParameter(h.getT());
+                    p.x = hitPoint.x();
+                    p.y = hitPoint.y();
+                    p.z = hitPoint.z();
+                    p._position = hitPoint;
+                    tracePhoton(p, _maxBounces);
+
+                    // Tracing photons may have produced a number
+                    // of photons, so update to determine if we should continue.
+                    currentNumPhotons = _photons.size();
+                    // printf("current number of photons stored: %d\n", currentNumPhotons);
+                }
             }
         }
-        // for (int i = 0; i < _photons.size(); ++i)
-        // {
-        //     _photons[i]._direction.print();
-        // }
+
         printf("size of cloud after init: %d\n", cloud.pts.size());
     }
     // Build KD tree and place all photons in tree.
     index.buildIndex();
-
+    printf("Done building map!\n");
 }
 
 // currently, just store in vector list
@@ -178,6 +180,10 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
 {
     // if a photon is extremely weak, we won't even consider it since
     // its contribution will be minimal
+
+    // printf("number of bounces left: %d\n", bounces);
+    //if (getLuminance instead? < WEAK_LIGHT)
+
     if (p._power.abs() < WEAK_LIGHT)
     {
         return;
@@ -190,7 +196,7 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
     Hit h;
     if (_scene.getGroup()->intersect(r, tmin, h))
     {
-        
+
         Vector3f hitPoint = r.pointAtParameter(h.getT());
         // Use diffuse and specular values to determine
         // what kind of material we have.
@@ -198,7 +204,7 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
         // whether we should store the photon
         // and with what probability we should absorb, reflect, transmit (?)
         if (h.getMaterial()->isDiffusive())
-        {            
+        {
             // Update values and store:
             Vector3f hitPoint = r.pointAtParameter(h.getT());
             p.x = hitPoint.x();
@@ -206,17 +212,16 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
             p.z = hitPoint.z();
             p._position = hitPoint;
             // p._direction --> stays the same (?)
-            printf("number of bounces left: %d", bounces);
             storePhoton(p);
         }
-
 
         Vector3f diffuse = h.getMaterial()->getDiffuseColor();
         float diffuseMagnitude = diffuse.abs();
         Vector3f specular = h.getMaterial()->getSpecularColor();
         float specularMagnitude = specular.abs();
-        // float probabilitySum = diffuseMagnitude + specularMagnitude;
-        // float r = generateRandom(probabilitySum);
+        float absorptionMagnitude = 0.4;
+        float probabilitySum = diffuseMagnitude + specularMagnitude + absorptionMagnitude;
+        float randNum = generateRandom(0.0f, probabilitySum);
 
         // hardcoded for now, should later augment materials to save
         // indices referring to diffuse and specular indicies
@@ -226,14 +231,13 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
 
         // if diffuse, store power, position, direction in map
         // then, modify power and direction and bounce again until limit reached
-        
-        float randNum = generateRandom(1.0);
-        if (randNum < 0.6) // absorb
+
+        // float randNum = generateRandom(0.0, 1.0);
+        if (randNum < absorptionMagnitude) // absorb
         {
             // "Absorption is the general termination condition upon which
             // we then store it in the photon map."
             storePhoton(p);
-
             return;
         }
 
@@ -268,14 +272,13 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
 // find the radiance of a point by
 // first finding the N nearest photons,
 // and then using radiance estimate algorithm
-Vector3f PhotonMap::findRadiance(Vector3f hitPoint, Vector3f normal)
+Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint, Vector3f normal)
 {
     // for now, lets say we have a vector that
     // contains our N nearest points
     // in reality, need kdtree
     const float query_pt[3] = {hitPoint.x(), hitPoint.y(), hitPoint.z()};
     // find N closest points
-
     std::vector<std::pair<size_t, float>> ret_matches;
     nanoflann::SearchParams params;
     params.sorted = true;
@@ -290,18 +293,31 @@ Vector3f PhotonMap::findRadiance(Vector3f hitPoint, Vector3f normal)
     {
         radius_2 = _searchRadius * _searchRadius;
     }
-    // Calculate radiance
-    float surfaceArea = 4.0f * M_PI * radius_2;
 
+    // Calculate radiance:
+    float surfaceArea = 4.0f * M_PI * radius_2;
+    Vector3f I = Vector3f(0.0f);
     for (int i = 0; i < num_results; ++i)
     {
         size_t index = ret_matches[i].first;
         Photon photon = cloud.pts[index];
         Vector3f dir = photon._direction;
+        Vector3f power = photon._power;
         float angle = Vector3f::dot(normal, dir);
+        Vector3f k_d = h.getMaterial()->getDiffuseColor();
+
+    float LN_angle = Vector3f::dot(normal.normalized(), dir);
+    float clamped_d = std::max(LN_angle, 0.0f);
+
+    float di_x = clamped_d * power.x() * k_d.x();
+    float di_y = clamped_d * power.y() * k_d.y();
+    float di_z = clamped_d * power.z() * k_d.z();
+    Vector3f d_i = Vector3f(di_x, di_y, di_z);
+
         if (angle > 0)
         {
             // intensity × (d · N) × diffuse-factor
+            I += d_i / radius_2;
         }
         else
         {
@@ -310,6 +326,20 @@ Vector3f PhotonMap::findRadiance(Vector3f hitPoint, Vector3f normal)
         // cloud.pts[ret_matches[i].first]._direction.print();
     }
 
-    // if radiance too small --> ignore
+    float intensity = I.abs() * (1.0f / surfaceArea);
+   // if radiance too small --> ignore
     // if radiance > 1 --> must normalize
+    if (intensity < WEAK_LIGHT)
+    {
+        return Vector3f(0.0f);
+    }
+    else
+    {
+        if (intensity > 1.0f)
+        {
+            I.normalize();
+        }
+        return I;
+    }
+ 
 }

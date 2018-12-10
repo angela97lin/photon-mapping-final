@@ -64,7 +64,7 @@ class PhotonMap
     size_t _maxBounces;
     SceneParser _scene; // need _scene to get lights.
     PointCloud cloud;
-	my_kd_tree_t   index;
+    my_kd_tree_t index;
     size_t _getNearest; // how many nearest photon to get for radiance calculation?
 
     // NOTE: will also need some structure to store our photons
@@ -73,15 +73,13 @@ class PhotonMap
     // for now, just using a vector until we add kdtree functionality
 
     std::vector<Photon> _photons;
-	float costheta[256];
-	float sintheta[256];
-	float cosphi[256];
-	float sinphi[256];
+
     PhotonMap(const ArgParser &_args, size_t numberOfPhotons);
     void tracePhoton(Photon &p, int bounces);
     void generateMap();
     void storePhoton(Photon &p);
-    Vector3f findRadiance(Vector3f hitPoint, Vector3f normal);
+    Vector3f findRadiance(Hit h, Vector3f hitPoint, Vector3f normal);
+    float getLuminance(Photon &p);
 
     // todo:
     // scatter photons (emit photons from light sources)
