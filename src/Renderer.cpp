@@ -19,7 +19,7 @@ Renderer::Renderer(const ArgParser &args) : _args(args),
 void Renderer::Render()
 {
     // First pass: generate photon map.
-    map = new PhotonMap(_args, 500); // lol delete in destructor to not leak
+    map = new PhotonMap(_args, 40); // lol delete in destructor to not leak
     map->generateMap();
 
     int w = _args.width;

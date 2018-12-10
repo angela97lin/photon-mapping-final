@@ -35,7 +35,7 @@ class Material
         const Vector3f &lightIntensity);
 
     // Material is considered diffusive if not specular at all.
-    const bool isDiffusive() const {
+    const bool isCompletelyDiffusive() const {
         // return (_diffuseColor.absSquared() > 0); --> not true but was what caused 
         // todo: if photon is absorbed, then we want to check if the above condition is
         // true, and if so, store.
@@ -45,6 +45,11 @@ class Material
         // don't store (only bounce)
 
         return (_specularColor.absSquared() == 0);
+    }
+
+        const bool isCompletelySpecular() const {
+
+        return (_diffuseColor.absSquared() == 0);
     }
 
 

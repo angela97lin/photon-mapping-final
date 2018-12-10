@@ -76,6 +76,7 @@ class PhotonMap
 
     PhotonMap(const ArgParser &_args, size_t numberOfPhotons);
     void tracePhoton(Photon &p, int bounces);
+    Photon *generatePhoton(Light *l);
     void generateMap();
     void storePhoton(Photon &p);
     Vector3f findRadiance(Hit h, Vector3f hitPoint, Vector3f normal);
