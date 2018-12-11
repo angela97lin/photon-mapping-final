@@ -11,7 +11,9 @@ struct Photon
     Vector3f _position;
     Vector3f _direction;
     Vector3f _power;
+    Sphere* _sphere;
 };
+
 #pragma once
 struct PointCloud
 {
@@ -53,39 +55,26 @@ typedef KDTreeSingleIndexAdaptor<
     PointCloud,
     3 /* dim */
     >
-    my_kd_tree_t;
+    kd_tree_t;
 
 class PhotonMap
 {
   public:
-    // hardcoded for now, can pass as param later.
     size_t _numberOfPhotons;
     float _searchRadius;
     size_t _maxBounces;
-    SceneParser _scene; // need _scene to get lights.
+    SceneParser _scene;
     PointCloud cloud;
-    my_kd_tree_t index;
-    size_t _getNearest; // how many nearest photon to get for radiance calculation?
-
-    // NOTE: will also need some structure to store our photons
-    // efficiently to find nearest neighbors (kdtree)
-    // for irradiance :)
-    // for now, just using a vector until we add kdtree functionality
-
-    std::vector<Photon> _photons;
+    kd_tree_t index;
+    size_t _getNearest; // how many nearest photons to get (for radiance calculation)
 
     PhotonMap(const ArgParser &_args, size_t numberOfPhotons);
     void tracePhoton(Photon &p, int bounces);
-    Photon *generatePhoton(Light *l);
+    void generatePhoton(Light *l);
     void generateMap();
     void storePhoton(Photon &p);
-    Vector3f findRadiance(Hit h, Vector3f hitPoint, Vector3f normal);
+    Vector3f findRadiance(Hit h, Vector3f hitPoint);
     float getLuminance(Photon &p);
-
-    // todo:
-    // scatter photons (emit photons from light sources)
-    // store them in photon map when they hit nonspecular objects
-    // calculate radiance via local density
-
-    // constructor needs num of light sources
+    void scalePhotonPower(const float scale);
+    std::vector<size_t> getNearestNeighbors(Hit h, Vector3f hitPoint);
 };

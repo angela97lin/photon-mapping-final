@@ -16,10 +16,15 @@ Renderer::Renderer(const ArgParser &args) : _args(args),
 {
 }
 
+Renderer::~Renderer()
+{
+    delete map;
+}
+
 void Renderer::Render()
 {
     // First pass: generate photon map.
-    map = new PhotonMap(_args, 40); // lol delete in destructor to not leak
+    map = new PhotonMap(_args, 4000);
     map->generateMap();
 
     int w = _args.width;
@@ -31,18 +36,7 @@ void Renderer::Render()
     Image pimage(w, h); // visualize photon map position
     Image rimage(w, h); // visualize radiance
 
-    // loop through all the pixels in the image
-    // generate all the samples
-
-    // This look generates camera rays and calls traceRay.
-    // It also write to the color, normal, and depth images.
-    // You should understand what this code does.
     Camera *cam = _scene.getCamera();
-
-    // note: although the following seems somewhat repetitive depending on
-    // whether or not jitter is turned on, it speeds things up
-    // significantly, when compared to checking for jittering within
-    // the for loop :O
 
     if (_args.jitter)
     {
@@ -112,17 +106,18 @@ void Renderer::Render()
     //     }
     // }
 
-    //_sceneCopy._group->m_members.clear();
+    // to produce photon map visualizations,
+    // created a copy of scene params,
+    // remove all actual objects
+    _sceneCopy._group->m_members.clear();
     for (int i = 0; i < map->cloud.pts.size(); ++i)
     {
-        Vector3f diffuse = map->cloud.pts[i]._power;
-        Material m = Material(diffuse);
-        Vector3f p = map->cloud.pts[i]._position;
-        // p.print();
-        Sphere *_s = new Sphere(p, 0.025f, &m);
-        _sceneCopy.getGroup()->addObject((Object3D *)_s);
+        // printf("Power!\n");
+        // map->cloud.pts[i]._power.print();
+        _sceneCopy.getGroup()->addObject((Object3D *)(map->cloud.pts[i]._sphere));
     }
 
+    printf("Drawing photon map...\n");
     // visualize photon map
     for (int y = 0; y < h; ++y)
     {
@@ -132,23 +127,9 @@ void Renderer::Render()
             float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
             Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
             Hit h;
-            Vector3f color = tracePhotons(r, cam->getTMin(), h);
+            Vector3f color = drawPhotons(r, cam->getTMin(), h);
+            // color.print();
             pimage.setPixel(x, y, color);
-        }
-    }
-
-
-    // visualize irradiance
-    for (int y = 0; y < h; ++y)
-    {
-        float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
-        for (int x = 0; x < w; ++x)
-        {
-            float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
-            Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
-            Hit h;
-            Vector3f color = drawRadiance(r, cam->getTMin(), h);
-            rimage.setPixel(x, y, color);
         }
     }
 
@@ -157,6 +138,7 @@ void Renderer::Render()
     {
         image.savePNG(_args.output_file);
     }
+
     // if (_args.depth_file.size())
     // {
     //     dimage.savePNG(_args.depth_file);
@@ -168,7 +150,6 @@ void Renderer::Render()
 
     pimage.savePNG(_args.normals_file);
     rimage.savePNG(_args.depth_file);
-
 }
 
 Vector3f
@@ -246,8 +227,7 @@ Renderer::traceRay(const Ray &r,
             I += k_s * secondary_ray;
         }
 
-        I += map->findRadiance(h, hitPoint, h.getNormal());
-
+        I += map->findRadiance(h, hitPoint);
         return I;
     }
     else
@@ -262,26 +242,24 @@ Renderer::drawRadiance(const Ray &r,
                        float tmin,
                        Hit &h) const
 {
-
     Vector3f I = Vector3f(0.0f, 0.0f, 0.0f);
     bool intersected = _sceneCopy.getGroup()->intersect(r, tmin, h);
     if (intersected)
     {
         Vector3f hitPoint = r.pointAtParameter(h.getT());
-        I = map->findRadiance(h, hitPoint, h.getNormal());
+        I = map->findRadiance(h, hitPoint);
         return I;
     }
     else
     {
-
         return Vector3f(0.0f);
-    };
+    }
 }
 
 Vector3f
-Renderer::tracePhotons(const Ray &r,
-                       float tmin,
-                       Hit &h) const
+Renderer::drawPhotons(const Ray &r,
+                      float tmin,
+                      Hit &h) const
 {
 
     Vector3f I = Vector3f(0.0f, 0.0f, 0.0f);
@@ -289,14 +267,9 @@ Renderer::tracePhotons(const Ray &r,
     if (intersected)
     {
         Vector3f hitPoint = r.pointAtParameter(h.getT());
-        I = h.getMaterial()->getDiffuseColor();
-        return I;
+        // I = h.getMaterial()->getDiffuseColor();
+        I = Vector3f(1.0f);
+        I.print();
     }
-    else
-    {
-
-        return Vector3f(0.0f);
-    };
+    return I;
 }
-
-

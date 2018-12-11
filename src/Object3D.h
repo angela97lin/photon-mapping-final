@@ -30,6 +30,11 @@ public:
 
     virtual bool intersect(const Ray &r, float tmin, Hit &h) const = 0;
 
+    void setMaterial(Material *material)
+    {
+        this->material = material;
+    }
+
     std::string   type;
     Material*     material;
 };
@@ -71,7 +76,7 @@ public:
 
     // Return number of objects in group
     int getGroupSize() const;
-        std::vector<Object3D*> m_members;
+    std::vector<Object3D*> m_members;
 
 private:
 };
