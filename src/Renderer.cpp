@@ -26,7 +26,7 @@ Renderer::~Renderer()
 void Renderer::Render()
 {
     // First pass: generate photon map.
-    _map = new PhotonMap(_args, 5000);
+    _map = new PhotonMap(_args, 500);
     auto photons = _map->getPhotons();
     _map->generateMap(photons);
 
@@ -41,19 +41,19 @@ void Renderer::Render()
     Image beforeImage(w, h);
     Camera *cam = _scene.getCamera();
 
-    // for (int y = 0; y < h; ++y)
-    // {
-    //     for (int x = 0; x < w; ++x)
-    //     {
-    //         float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
-    //         float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
-    //         Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
+    for (int y = 0; y < h; ++y)
+    {
+        for (int x = 0; x < w; ++x)
+        {
+            float ndcy = 2 * (y / (h - 1.0f)) - 1.0f;
+            float ndcx = 2 * (x / (w - 1.0f)) - 1.0f;
+            Ray r = cam->generateRay(Vector2f(ndcx, ndcy));
 
-    //         Hit h;
-    //         Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
-    //         image.setPixel(x, y, color);
-    //     }
-    // }
+            Hit h;
+            Vector3f color = traceRay(r, cam->getTMin(), _args.bounces, h);
+            image.setPixel(x, y, color);
+        }
+    }
 
     _sceneCopy._group->m_members.clear();
     
@@ -190,9 +190,7 @@ Renderer::traceRay(const Ray &r,
             Vector3f secondary_ray = traceRay(newRay, 0.0f, bounces - 1, newH);
             I += k_s * secondary_ray;
         }
-
         I += _map->findRadiance(h, hitPoint);
-
         return I;
     }
     else

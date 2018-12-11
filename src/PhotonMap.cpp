@@ -145,7 +145,7 @@ void PhotonMap::generateMap(std::vector<Photon> photonList)
         cloud.pts.push_back(photonList[i]);
     }
     // Build KD tree and place all photons in tree.
-    // scalePhotonPower(1.0f / _numberOfPhotons);
+    scalePhotonPower(1.0f / _numberOfPhotons);
     index.buildIndex();
     printf("Done building map...\n");
     printf("Size of cloud: %d\n", cloud.pts.size());
@@ -167,11 +167,9 @@ std::vector<Photon> PhotonMap::getPhotons()
                 for (int j = 0; j < _numberOfPhotons; ++j)
                 {
                     generatePhoton(l, (Channel)channel, s_photons);
-    
                 }
             }
         }
-        printf("number of photons for %d: %d\n", channel, s_photons.size());
         for (int k = 0; k < s_photons.size(); ++k)
         {
             Photon newP = s_photons[k].copy();
@@ -181,6 +179,7 @@ std::vector<Photon> PhotonMap::getPhotons()
             master.push_back(newP);
         }
     }
+
     return master;
 }
 
@@ -204,6 +203,7 @@ void PhotonMap::tracePhoton(Photon &p, int bounces, Channel channel, std::vector
         // NOTE: assuming that diffuseComponent + specularComponent < 1.0f
 
         float randNum = generateRandom(0.0f, 1.0f);
+        // printf("random number gen: %f\n", randNum);
         if (randNum > diffuseComponent)
         {
             // diffusely reflect (uniformly choose random direction to reflect to)
@@ -262,80 +262,82 @@ void PhotonMap::scalePhotonPower(const float scale)
 {
     for (int i = 0; i < cloud.pts.size(); i++)
     {
+        cloud.pts[i]._powerVector.print();
         cloud.pts[i]._power *= scale;
+        cloud.pts[i]._powerVector.print();
+
     }
 }
 
+
+
+
 Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
 {
-    // for now, lets say we have a vector that
-    // contains our N nearest points
-    // in reality, need kdtree
+
     Vector3f normal = h.getNormal();
     const float query_pt[3] = {hitPoint.x(), hitPoint.y(), hitPoint.z()};
     // find N closest points
-
-    size_t num_results = 10;
+    size_t num_results = 15;
     std::vector<size_t> ret_index(num_results);
     std::vector<float> out_dist_sqr(num_results);
     nanoflann::KNNResultSet<Photon> resultSet(num_results);
     num_results = index.knnSearch(&query_pt[0], num_results, &ret_index[0], &out_dist_sqr[0]);
     ret_index.resize(num_results);
     out_dist_sqr.resize(num_results);
-
-    // for (int i = 0; i < num_results; ++i)
-    // {
-    //     printf("dist to photon: %f\n", out_dist_sqr[i]);
-    // }
-    // size_t num_results = index.radiusSearch(&query_pt[0], _searchRadius, ret_matches, params);
-
     float radius_2 = out_dist_sqr[num_results - 1];
 
-    // Calculate radiance:
-    float surfaceArea = 4.0f * M_PI * radius_2;
+    // Calculate incident irradiance:
+    float surfaceArea = M_PI * radius_2;
     Vector3f I = Vector3f(0.0f);
+
     for (int i = 0; i < num_results; ++i)
     {
         size_t index = ret_index[i];
         Photon photon = cloud.pts[index];
-        Vector3f dir = photon._direction;
+        Vector3f dir = photon._direction.normalized();
         Vector3f power = photon._powerVector;
+        Vector3f dist_vector = hitPoint - photon._position;
+        float distToLight = dist_vector.abs();
+
+
         float angle = Vector3f::dot(normal, dir);
         Vector3f k_d = h.getMaterial()->getDiffuseColor();
-        float LN_angle = Vector3f::dot(normal.normalized(), dir.normalized());
+        Vector3f hitNormNormalized = h.getNormal().normalized();
+
+        float LN_angle = Vector3f::dot(hitNormNormalized, dir);
         float clamped_d = std::max(LN_angle, 0.0f);
         float di_x = clamped_d * power.x() * k_d.x();
         float di_y = clamped_d * power.y() * k_d.y();
         float di_z = clamped_d * power.z() * k_d.z();
         Vector3f d_i = k_d * Vector3f(di_x, di_y, di_z);
 
+
         if (angle > 0)
         {
-            I += d_i / surfaceArea;
+            I += d_i * (1.0f / surfaceArea);
+
         }
         else
         {
             // printf("angle is negative\n");
             // facing inwards to surface and thus, don't consider
         }
-    }
 
-    float intensity = I.abs() * (1.0f / surfaceArea);
-    // if radiance too small --> ignore
-    // if radiance > 1 --> must normalize
-    // if (intensity > 0.0f)
-    // {
-    //     printf("This photon is something!\n");
-    // }
-    // else
-    // {
-    //     printf("This photon is NOT something!\n");
-    // }
-    if (intensity > 1.0f)
+    }
+    if (surfaceArea > 0.05f)
     {
-        I.normalize();
-    }
+      
+        float intensity = I.abs();
 
-    // Vector3f I = Vector3f(0.0f);
-    return I;
+        float mostIntenseComponent = std::max(I.x(), std::max(I.y(), I.z()));
+        // printf("Most intense component is: %f\n", mostIntenseComponent);
+        if (mostIntenseComponent > 1.0f)
+        {
+            Vector3f scaledI = I / (I.x() + I.y() + I.z());
+            return scaledI;
+        }
+        return I;
+    }
+    return Vector3f(0.0f);
 }
