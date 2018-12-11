@@ -123,20 +123,6 @@ void PhotonMap::generatePhoton(Light *l, Channel channel, std::vector<Photon> &v
     }
 }
 
-// void PhotonMap::generateMap()
-// {
-
-//     std::vector<Photon> photonList = getPhotons();
-//     for (int i = 0; i < photonList.size(); ++i)
-//     {
-//         cloud.pts.push_back(photonList[i]);
-//     }
-//     // Build KD tree and place all photons in tree.
-//     // scalePhotonPower(1.0f / _numberOfPhotons);
-//     index.buildIndex();
-//     printf("Done building map...\n");
-//     printf("Size of cloud: %d\n", cloud.pts.size());
-// }
 
 void PhotonMap::generateMap(std::vector<Photon> photonList)
 {
@@ -278,7 +264,7 @@ Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
     Vector3f normal = h.getNormal();
     const float query_pt[3] = {hitPoint.x(), hitPoint.y(), hitPoint.z()};
     // find N closest points
-    size_t num_results = 15;
+    size_t num_results = 50;
     std::vector<size_t> ret_index(num_results);
     std::vector<float> out_dist_sqr(num_results);
     nanoflann::KNNResultSet<Photon> resultSet(num_results);
