@@ -128,10 +128,11 @@ void PhotonMap::generateMap(std::vector<Photon> photonList)
 {
     for (int i = 0; i < photonList.size(); ++i)
     {
+        photonList[i]._powerVector = photonList[i]._powerVector * (1.0f / _numberOfPhotons);
         cloud.pts.push_back(photonList[i]);
     }
     // Build KD tree and place all photons in tree.
-    scalePhotonPower(1.0f / _numberOfPhotons);
+    // scalePhotonPower(1.0f / _numberOfPhotons);
     index.buildIndex();
     printf("Done building map...\n");
     printf("Size of cloud: %d\n", cloud.pts.size());
@@ -248,8 +249,10 @@ void PhotonMap::scalePhotonPower(const float scale)
 {
     for (int i = 0; i < cloud.pts.size(); i++)
     {
+        printf("before:\n");
         cloud.pts[i]._powerVector.print();
         cloud.pts[i]._power *= scale;
+        printf("after:\n");
         cloud.pts[i]._powerVector.print();
 
     }
@@ -282,10 +285,11 @@ Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
         size_t index = ret_index[i];
         Photon photon = cloud.pts[index];
         Vector3f dir = photon._direction.normalized();
-        Vector3f power = photon._powerVector;
+        // Vector3f power = photon._powerVector;
+        Vector3f power = Vector3f(0.01f);
+
         Vector3f dist_vector = hitPoint - photon._position;
         float distToLight = dist_vector.abs();
-
 
         float angle = Vector3f::dot(normal, dir);
         Vector3f k_d = h.getMaterial()->getDiffuseColor();
@@ -297,15 +301,17 @@ Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
         float di_y = clamped_d * power.y() * k_d.y();
         float di_z = clamped_d * power.z() * k_d.z();
         Vector3f d_i = k_d * Vector3f(di_x, di_y, di_z);
+        const auto w = 1.0f - (distToLight * distToLight / radius_2);
 
 
         if (angle > 0)
         {
-            I += d_i * (1.0f / surfaceArea);
+            I += d_i * (w / surfaceArea);
 
         }
         else
         {
+            // printf("negaative angle\n");
             // printf("angle is negative\n");
             // facing inwards to surface and thus, don't consider
         }
@@ -317,12 +323,7 @@ Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
         float intensity = I.abs();
 
         float mostIntenseComponent = std::max(I.x(), std::max(I.y(), I.z()));
-        // printf("Most intense component is: %f\n", mostIntenseComponent);
-        if (mostIntenseComponent > 1.0f)
-        {
-            Vector3f scaledI = I / (I.x() + I.y() + I.z());
-            return scaledI;
-        }
+
         return I;
     }
     return Vector3f(0.0f);

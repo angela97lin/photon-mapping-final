@@ -26,7 +26,7 @@ Renderer::~Renderer()
 void Renderer::Render()
 {
     // First pass: generate photon map.
-    _map = new PhotonMap(_args, 500);
+    _map = new PhotonMap(_args, 3000);
     auto photons = _map->getPhotons();
     _map->generateMap(photons);
 
