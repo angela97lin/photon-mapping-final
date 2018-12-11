@@ -10,8 +10,30 @@ struct Photon
     float x, y, z;
     Vector3f _position;
     Vector3f _direction;
-    Vector3f _power;
-    Sphere* _sphere;
+    Vector3f _powerVector;
+    float _power;
+
+    Photon copy()
+    {
+        Photon newP;
+        newP.x = x;
+        newP.y = y;
+        newP.z = z;
+        newP._direction = _direction;
+        newP._powerVector = _powerVector;
+        newP._power = _power;
+        newP._position = _position;
+
+        return newP;
+    }
+
+    void setPosition(Vector3f pos)
+    {
+        x = pos.x();
+        y = pos.y();
+        z = pos.z();
+        _position = pos;
+    }
 };
 
 #pragma once
@@ -59,7 +81,16 @@ typedef KDTreeSingleIndexAdaptor<
 
 class PhotonMap
 {
+
   public:
+    enum Channel
+    {
+        red = 0,
+        green = 1,
+        blue = 2,
+        size
+    };
+
     size_t _numberOfPhotons;
     float _searchRadius;
     size_t _maxBounces;
@@ -68,13 +99,21 @@ class PhotonMap
     kd_tree_t index;
     size_t _getNearest; // how many nearest photons to get (for radiance calculation)
 
+    std::vector<Photon> getPhotons();
+    void generateMap(std::vector<Photon> photonList);
+
+    // void generateMap(Channel channel);
+    void generatePhoton(Light *l, Channel channel, std::vector<Photon> &v);
+
+
     PhotonMap(const ArgParser &_args, size_t numberOfPhotons);
-    void tracePhoton(Photon &p, int bounces);
-    void generatePhoton(Light *l);
+    void tracePhoton(Photon &p, int bounces, Channel channel, std::vector<Photon> &v);
+
+    void storePreprocessPhoton(Photon &p, Channel channel);
+
     void generateMap();
     void storePhoton(Photon &p);
     Vector3f findRadiance(Hit h, Vector3f hitPoint);
-    float getLuminance(Photon &p);
     void scalePhotonPower(const float scale);
-    std::vector<size_t> getNearestNeighbors(Hit h, Vector3f hitPoint);
+    // std::vector<size_t> getNearestNeighbors(Hit h, Vector3f hitPoint);
 };

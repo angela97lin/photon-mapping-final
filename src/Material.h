@@ -15,7 +15,7 @@ class Material
   public:
     Material(const Vector3f &diffuseColor, 
              const Vector3f &specularColor = Vector3f::ZERO, 
-             float shininess = 0) :
+             float shininess = 0, bool _debug = false) :
         _diffuseColor(diffuseColor),
         _specularColor(specularColor),
         _shininess(shininess)
@@ -58,6 +58,7 @@ protected:
     Vector3f _diffuseColor;
     Vector3f _specularColor;
     float   _shininess;
+    bool _debug;
 };
 
 #endif // MATERIAL_H

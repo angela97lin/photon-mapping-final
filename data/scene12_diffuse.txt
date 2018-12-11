@@ -51,7 +51,7 @@ specularColor 0.4 0.4 0.4
 
 Group {
     numObjects 7
-    MaterialIndex 2
+    MaterialIndex 0
     Transform {
  
     TriangleMesh {
@@ -59,7 +59,7 @@ Group {
     }
     }
 
-    MaterialIndex 1
+    MaterialIndex 0
       Transform {
 
       TriangleMesh {

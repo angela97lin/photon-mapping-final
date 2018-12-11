@@ -43,17 +43,6 @@ How to VISUALIZE photon map?
     --> add spheres to scene and visualize!
 */
 
-// Get luminance value from color
-// Probs don't need?
-float PhotonMap::getLuminance(Photon &p)
-{
-    Vector3f color = p._power;
-    float R = color.x();
-    float G = color.y();
-    float B = color.z();
-    return 0.2126f * R + 0.7152f * G + 0.0722f * B;
-}
-
 PhotonMap::PhotonMap(const ArgParser &_args, size_t numberOfPhotons) : _scene(_args.input_file),
                                                                        _numberOfPhotons(numberOfPhotons),
                                                                        index(3 /*dim*/, cloud, KDTreeSingleIndexAdaptorParams(10 /* max leaf */))
@@ -98,10 +87,11 @@ inline Vector3f randomDiffuseDirection(const Vector3f &normal)
 {
     Vector3f dir = normal + RandomUnitVector();
     dir.normalize();
+    // dir.print();
     return dir;
 }
 
-void PhotonMap::generatePhoton(Light *l)
+void PhotonMap::generatePhoton(Light *l, Channel channel, std::vector<Photon> &v)
 {
     // simple rejection algorithm from Jensen
     double x, y, z;
@@ -113,20 +103,8 @@ void PhotonMap::generatePhoton(Light *l)
     } while ((x * x + y * y + z * z) > 1.0);
 
     Vector3f dir = Vector3f(x, y, z).normalized();
-    // dir.print();
-    Photon p;
-    p.x = dir.x();
-    p.y = dir.y();
-    p.z = dir.z();
-    p._position = l->_position;
-    p._direction = dir;
-    p._power = l->_power;
 
-    // these are just to visualize photons for debugging
-    Material m = Material(p._power);
-    p._sphere = new Sphere(p._position, 0.03f, &m);
-
-    Ray r = Ray(p._position, p._direction);
+    Ray r = Ray(l->_position, dir);
     Hit h;
     Camera *cam = _scene.getCamera();
     float tmin = cam->getTMin();
@@ -134,44 +112,37 @@ void PhotonMap::generatePhoton(Light *l)
     {
         // Update values and store:
         Vector3f hitPoint = r.pointAtParameter(h.getT());
+        Photon p;
         p.x = hitPoint.x();
         p.y = hitPoint.y();
         p.z = hitPoint.z();
+        p._direction = dir;
+        p._power = l->_power[channel];
         p._position = hitPoint;
-        p._sphere = new Sphere(p._position, 0.03f, &m);
-
-        tracePhoton(p, _maxBounces);
+        tracePhoton(p, _maxBounces, channel, v);
     }
 }
-void PhotonMap::generateMap()
+
+// void PhotonMap::generateMap()
+// {
+
+//     std::vector<Photon> photonList = getPhotons();
+//     for (int i = 0; i < photonList.size(); ++i)
+//     {
+//         cloud.pts.push_back(photonList[i]);
+//     }
+//     // Build KD tree and place all photons in tree.
+//     // scalePhotonPower(1.0f / _numberOfPhotons);
+//     index.buildIndex();
+//     printf("Done building map...\n");
+//     printf("Size of cloud: %d\n", cloud.pts.size());
+// }
+
+void PhotonMap::generateMap(std::vector<Photon> photonList)
 {
-    // used to get random direction
-    // in reality, we need to calculate the
-    // number of photons we want to emit per light
-    // depending on the total number of lights in our scene,
-    // and then dividing up our desired number of photons
-    // by this number (wattage).
-    // however, not relevant right now since we only want to handle one light source
-    // all of our photons will be generated from this one light
-    std::default_random_engine generator;
-    std::uniform_real_distribution<double> distribution(-1, 1); //doubles from -1 to 1
-
-    size_t currentNumPhotons = 0;
-    int numLights = _scene.getNumLights();
-    for (int i = 0; i < numLights; ++i)
+    for (int i = 0; i < photonList.size(); ++i)
     {
-        Light *l = _scene.getLight(i);
-
-        if (l->_type == 0) // point light, scatter photons randomly
-        {
-            while (currentNumPhotons < _numberOfPhotons)
-            {
-                generatePhoton(l);
-                // Tracing photons may have produced a number
-                // of photons, so update to determine if we should continue.
-                currentNumPhotons = cloud.pts.size();
-            }
-        }
+        cloud.pts.push_back(photonList[i]);
     }
     // Build KD tree and place all photons in tree.
     // scalePhotonPower(1.0f / _numberOfPhotons);
@@ -180,28 +151,41 @@ void PhotonMap::generateMap()
     printf("Size of cloud: %d\n", cloud.pts.size());
 }
 
-// currently, just store in vector list
-// we can later use that list to build our tree.
-void PhotonMap::storePhoton(Photon &photon)
+std::vector<Photon> PhotonMap::getPhotons()
 {
-    Photon photonToStore;
-    photonToStore.x = photon.x;
-    photonToStore.y = photon.y;
-    photonToStore.z = photon.z;
-    photonToStore._position = Vector3f(photon._position);
-    photonToStore._direction = Vector3f(photon._direction);
-    photonToStore._sphere = new Sphere(*photon._sphere);
-    photonToStore._power = Vector3f(photon._power);
-    cloud.pts.push_back(photonToStore);
+    std::vector<Photon> master;
+    for (int channel = 0; channel < Channel::size; ++channel)
+    {
+        std::vector<Photon> s_photons;
+        int numLights = _scene.getNumLights();
+        for (int i = 0; i < numLights; ++i)
+        {
+            Light *l = _scene.getLight(i);
+
+            if (l->_type == 0) // point light, scatter photons randomly
+            {
+                for (int j = 0; j < _numberOfPhotons; ++j)
+                {
+                    generatePhoton(l, (Channel)channel, s_photons);
+    
+                }
+            }
+        }
+        printf("number of photons for %d: %d\n", channel, s_photons.size());
+        for (int k = 0; k < s_photons.size(); ++k)
+        {
+            Photon newP = s_photons[k].copy();
+            newP._powerVector = Vector3f::ZERO;
+            newP._powerVector[channel] = newP._power;
+            // newP._powerVector.print();
+            master.push_back(newP);
+        }
+    }
+    return master;
 }
 
-void PhotonMap::tracePhoton(Photon &p, int bounces)
+void PhotonMap::tracePhoton(Photon &p, int bounces, Channel channel, std::vector<Photon> &v)
 {
-    if (p._power.abs() < WEAK_LIGHT)
-    {
-        return;
-    }
-
     Camera *cam = _scene.getCamera();
     float tmin = cam->getTMin();
 
@@ -213,167 +197,64 @@ void PhotonMap::tracePhoton(Photon &p, int bounces)
         // determine whether to specularly reflect
         // or diffusely reflect or just get absorbed
         // for each color component?
-        for (int color = 0; color < 3; ++color)
+        float diffuseComponent = h.getMaterial()->getDiffuseColor()[channel];
+        // h.getMaterial()->getDiffuseColor().print();
+        // for later, but only working with strictly diffuse surfaces right now.
+        // float specularComponent = h.getMaterial()->getSpecularColor()[color];
+        // NOTE: assuming that diffuseComponent + specularComponent < 1.0f
+
+        float randNum = generateRandom(0.0f, 1.0f);
+        if (randNum > diffuseComponent)
         {
-            float diffuseComponent = h.getMaterial()->getDiffuseColor()[color];
-            // for later, but only working with strictly diffuse surfaces right now.
-            float specularComponent = h.getMaterial()->getSpecularColor()[color];
-            // NOTE: assuming that diffuseComponent + specularComponent < 1.0f
-
-            float randNum = generateRandom(0.0f, 1.0f);
-            if (randNum < diffuseComponent)
+            // diffusely reflect (uniformly choose random direction to reflect to)
+            // should be same except direction chosen randomly rather than based on specular
+            if (bounces > 0 && bounces != _maxBounces)
             {
-                // diffusely reflect (uniformly choose random direction to reflect to)
-                // should be same except direction chosen randomly rather than based on specular
-                if (bounces > 0)
-                {
-                    Vector3f hitPoint = r.pointAtParameter(h.getT());
-                    p.x = hitPoint.x();
-                    p.y = hitPoint.y();
-                    p.z = hitPoint.z();
-                    p._position = hitPoint;
-                    Material m = Material(p._power);
-                    p._sphere = new Sphere(p._position, 0.03f, &m);
-                    storePhoton(p);
+                Photon newP = p.copy();
+                Vector3f hitPoint = r.pointAtParameter(h.getT());
+                newP.setPosition(hitPoint);
+                v.push_back(newP);
 
-                    // Generate new photon for bouncing:
-                    // Photon newP;
-                    // newP.x = hitPoint.x();
-                    // newP.y = hitPoint.y();
-                    // newP.z = hitPoint.z();
-                    // newP._position = hitPoint;
-                    // newP._power = Vector3f(0.0f);
-                    // newP._power[color] = diffuseComponent;
-                    // Vector3f newDir = randomDiffuseDirection(h.getNormal());
-                    // Material newM = Material(newP._power);
-                    // newP._sphere = new Sphere(newP._position, 0.03f, &m);
-                    // newP._direction = newDir;
-                    // newP._power.print();
-
-                    p._power = Vector3f(0.0f);
-                    p._power[color] = diffuseComponent;
-                    Vector3f newDir = randomDiffuseDirection(h.getNormal());
-                    p._direction = newDir;
-                    Material newM = Material(p._power);
-                    p._sphere = new Sphere(p._position, 0.03f, &m);
-                    tracePhoton(p, bounces - 1);
-                }
-                return;
-            }
-
-            // ignore for now
-            else if (randNum < (diffuseComponent + specularComponent))
-            {
-                // specularly reflect
-                if (bounces > 0)
-                {
-                    Vector3f k_s = h.getMaterial()->getSpecularColor();
-                    Vector3f eye = r.getDirection();
-                    Vector3f newRayDir = (eye + 2.0f * (Vector3f::dot(-eye, h.getNormal().normalized())) * h.getNormal()).normalized();
-                    Vector3f newRayOrigin = hitPoint + EPSILON * newRayDir;
-                    p.x = newRayDir.x();
-                    p.y = newRayDir.y();
-                    p.z = newRayDir.z();
-
-                    p._direction = newRayDir;
-                    p._position = newRayOrigin;
-                    Material m = Material(p._power);
-                    p._sphere = new Sphere(p._position, 0.03f, &m);
-                    tracePhoton(p, bounces - 1);
-                }
-            }
-
-            else
-            {
-                // absorb photon by storing
-                // "Absorption is the general termination condition upon which
-                // we then store it in the photon map."
-                storePhoton(p);
-                return;
+                Vector3f newDir = randomDiffuseDirection(h.getNormal());
+                newP._direction = newDir;
+                tracePhoton(newP, bounces - 1, channel, v);
             }
         }
 
-
-
-        // // determine whether to specularly reflect or diffusely reflect or just get absorbed.
-        // for (int color = 0; color < 3; ++color)
+        // // ignore for now
+        // else if (randNum < (diffuseComponent + specularComponent))
         // {
-        //     float diffuseComponent = h.getMaterial()->getDiffuseColor()[color];
-        //     // for later, but only working with strictly diffuse surfaces right now.
-        //     float specularComponent = h.getMaterial()->getSpecularColor()[color];
-        //     // NOTE: assuming that diffuseComponent + specularComponent < 1.0f
-
-        //     float randNum = generateRandom(0.0f, 1.0f);
-        //     if (randNum < diffuseComponent)
+        //     // specularly reflect
+        //     if (bounces > 0)
         //     {
-        //         // diffusely reflect (uniformly choose random direction to reflect to)
-        //         // should be same except direction chosen randomly rather than based on specular
-        //         if (bounces > 0)
-        //         {
-        //             Vector3f hitPoint = r.pointAtParameter(h.getT());
-        //             p.x = hitPoint.x();
-        //             p.y = hitPoint.y();
-        //             p.z = hitPoint.z();
-        //             p._position = hitPoint;
-        //             Material m = Material(p._power);
-        //             p._sphere = new Sphere(p._position, 0.03f, &m);
-        //             storePhoton(p);
+        //         Vector3f k_s = h.getMaterial()->getSpecularColor();
+        //         Vector3f eye = r.getDirection();
+        //         Vector3f newRayDir = (eye + 2.0f * (Vector3f::dot(-eye, h.getNormal().normalized())) * h.getNormal()).normalized();
+        //         Vector3f newRayOrigin = hitPoint + EPSILON * newRayDir;
+        //         p.x = newRayDir.x();
+        //         p.y = newRayDir.y();
+        //         p.z = newRayDir.z();
 
-        //             // Generate new photon for bouncing:
-        //             // Photon newP;
-        //             // newP.x = hitPoint.x();
-        //             // newP.y = hitPoint.y();
-        //             // newP.z = hitPoint.z();
-        //             // newP._position = hitPoint;
-        //             // newP._power = Vector3f(0.0f);
-        //             // newP._power[color] = diffuseComponent;
-        //             // Vector3f newDir = randomDiffuseDirection(h.getNormal());
-        //             // Material newM = Material(newP._power);
-        //             // newP._sphere = new Sphere(newP._position, 0.03f, &m);
-        //             // newP._direction = newDir;
-        //             // newP._power.print();
-
-        //             p._power = Vector3f(0.0f);
-        //             p._power[color] = diffuseComponent;
-        //             Vector3f newDir = randomDiffuseDirection(h.getNormal());
-        //             Material newM = Material(p._power);
-        //             p._sphere = new Sphere(p._position, 0.03f, &m);
-        //             tracePhoton(p, bounces - 1);
-        //         }
-        //     }
-
-        //     // ignore for now
-        //     else if (randNum < (diffuseComponent + specularComponent))
-        //     {
-        //         // specularly reflect
-        //         if (bounces > 0)
-        //         {
-        //             Vector3f k_s = h.getMaterial()->getSpecularColor();
-        //             Vector3f eye = r.getDirection();
-        //             Vector3f newRayDir = (eye + 2.0f * (Vector3f::dot(-eye, h.getNormal().normalized())) * h.getNormal()).normalized();
-        //             Vector3f newRayOrigin = hitPoint + EPSILON * newRayDir;
-        //             p.x = newRayDir.x();
-        //             p.y = newRayDir.y();
-        //             p.z = newRayDir.z();
-
-        //             p._direction = newRayDir;
-        //             p._position = newRayOrigin;
-        //             Material m = Material(p._power);
-        //             p._sphere = new Sphere(p._position, 0.03f, &m);
-        //             tracePhoton(p, bounces - 1);
-        //         }
-        //     }
-
-        //     else
-        //     {
-        //         // absorb photon by storing
-        //         // "Absorption is the general termination condition upon which
-        //         // we then store it in the photon map."
-        //         storePhoton(p);
-        //         return;
+        //         p._direction = newRayDir;
+        //         p._position = newRayOrigin;
+        //         Material m = Material(p._power);
+        //         p._sphere = new Sphere(p._position, 0.03f, &m);
+        //         tracePhoton(p, bounces - 1);
         //     }
         // }
+
+        else
+        {
+            // absorb photon by storing
+            // "Absorption is the general termination condition upon which
+            // we then store it in the photon map."
+            Photon newP = p.copy();
+            Vector3f hitPoint = r.pointAtParameter(h.getT());
+            newP.setPosition(hitPoint);
+            v.push_back(newP);
+        }
     }
+
     return;
 }
 
@@ -385,31 +266,6 @@ void PhotonMap::scalePhotonPower(const float scale)
     }
 }
 
-std::vector<size_t> PhotonMap::getNearestNeighbors(Hit h, Vector3f hitPoint)
-{
-    std::vector<size_t> photonList;
-    Vector3f normal = h.getNormal();
-    const float query_pt[3] = {hitPoint.x(), hitPoint.y(), hitPoint.z()};
-    // find N closest points
-    std::vector<std::pair<size_t, float>> ret_matches;
-    nanoflann::SearchParams params;
-    params.sorted = true;
-    size_t num_results = index.radiusSearch(&query_pt[0], _searchRadius, ret_matches, params);
-
-    for (int i = 0; i < num_results; ++i)
-    {
-        size_t index = ret_matches[i].first;
-        photonList.push_back(index);
-    }
-    // printf("Nearest neighbor list size: %d\n", num_results);
-    return photonList;
-}
-
-// This will primarily be used in rendering.
-// TODO:
-// find the radiance of a point by
-// first finding the N nearest photons,
-// and then using radiance estimate algorithm
 Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
 {
     // for now, lets say we have a vector that
@@ -418,34 +274,35 @@ Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
     Vector3f normal = h.getNormal();
     const float query_pt[3] = {hitPoint.x(), hitPoint.y(), hitPoint.z()};
     // find N closest points
-    std::vector<std::pair<size_t, float>> ret_matches;
-    nanoflann::SearchParams params;
-    params.sorted = true;
-    size_t num_results = index.radiusSearch(&query_pt[0], _searchRadius, ret_matches, params);
-    float radius_2; // used to determine our radiance via spherical SA.
-    if (num_results > _getNearest)
-    {
-        num_results = _getNearest;
-        radius_2 = ret_matches[num_results - 1].second * ret_matches[num_results - 1].second;
-    }
-    else
-    {
 
-        radius_2 = _searchRadius * _searchRadius;
-    }
+    size_t num_results = 10;
+    std::vector<size_t> ret_index(num_results);
+    std::vector<float> out_dist_sqr(num_results);
+    nanoflann::KNNResultSet<Photon> resultSet(num_results);
+    num_results = index.knnSearch(&query_pt[0], num_results, &ret_index[0], &out_dist_sqr[0]);
+    ret_index.resize(num_results);
+    out_dist_sqr.resize(num_results);
+
+    // for (int i = 0; i < num_results; ++i)
+    // {
+    //     printf("dist to photon: %f\n", out_dist_sqr[i]);
+    // }
+    // size_t num_results = index.radiusSearch(&query_pt[0], _searchRadius, ret_matches, params);
+
+    float radius_2 = out_dist_sqr[num_results - 1];
 
     // Calculate radiance:
     float surfaceArea = 4.0f * M_PI * radius_2;
     Vector3f I = Vector3f(0.0f);
     for (int i = 0; i < num_results; ++i)
     {
-        size_t index = ret_matches[i].first;
+        size_t index = ret_index[i];
         Photon photon = cloud.pts[index];
         Vector3f dir = photon._direction;
-        Vector3f power = photon._power;
+        Vector3f power = photon._powerVector;
         float angle = Vector3f::dot(normal, dir);
         Vector3f k_d = h.getMaterial()->getDiffuseColor();
-        float LN_angle = Vector3f::dot(normal.normalized(), dir);
+        float LN_angle = Vector3f::dot(normal.normalized(), dir.normalized());
         float clamped_d = std::max(LN_angle, 0.0f);
         float di_x = clamped_d * power.x() * k_d.x();
         float di_y = clamped_d * power.y() * k_d.y();
@@ -454,14 +311,13 @@ Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
 
         if (angle > 0)
         {
-            // intensity × (d · N) × diffuse-factor
-            I += d_i / radius_2;
+            I += d_i / surfaceArea;
         }
         else
         {
+            // printf("angle is negative\n");
             // facing inwards to surface and thus, don't consider
         }
-        // cloud.pts[ret_matches[i].first]._direction.print();
     }
 
     float intensity = I.abs() * (1.0f / surfaceArea);
@@ -473,13 +329,13 @@ Vector3f PhotonMap::findRadiance(Hit h, Vector3f hitPoint)
     // }
     // else
     // {
-    //             printf("This photon is NOT something!\n");
-
+    //     printf("This photon is NOT something!\n");
     // }
     if (intensity > 1.0f)
     {
         I.normalize();
     }
 
+    // Vector3f I = Vector3f(0.0f);
     return I;
 }

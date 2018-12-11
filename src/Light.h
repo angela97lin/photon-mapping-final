@@ -57,7 +57,7 @@ public:
   {
     _type = 0;
     _position = p;
-    _power = Vector3f(.1f, .1f, .1f); // white light!
+    _power = Vector3f(1.f, 1.f, 1.f); // white light!
   }
 
   virtual void getIllumination(const Vector3f &p,

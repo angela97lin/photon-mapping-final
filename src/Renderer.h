@@ -27,6 +27,16 @@ private:
                        Hit &h) const;
 
 Vector3f
+traceRayForPhotons(const Ray &r,
+                   float tmin,
+                   int bounces,
+                   Hit &h) const;
+Vector3f
+traceOriginalRay(const Ray &r,
+                   float tmin,
+                   int bounces,
+                   Hit &h) const;
+Vector3f
 drawPhotons(const Ray &r,
                        float tmin,
                        Hit &h) const;
@@ -35,7 +45,7 @@ drawPhotons(const Ray &r,
   SceneParser _scene;
   SceneParser _sceneCopy;
 
-  PhotonMap *map;
+  PhotonMap *_map;
 };
 
 #endif // RENDERER_H

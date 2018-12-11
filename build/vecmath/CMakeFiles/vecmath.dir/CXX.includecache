@@ -27,6 +27,8 @@ cmath
 -
 
 ../vecmath/include/Vector3f.h
+algorithm
+-
 
 ../vecmath/include/Vector4f.h
 
@@ -116,6 +118,8 @@ cmath
 cstdio
 -
 cstdlib
+-
+algorithm
 -
 Vector3f.h
 /Users/ange/Desktop/photon-mapping-final/vecmath/Vector3f.h

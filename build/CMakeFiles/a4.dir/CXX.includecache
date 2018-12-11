@@ -27,6 +27,8 @@ cmath
 -
 
 ../vecmath/include/Vector3f.h
+algorithm
+-
 
 ../vecmath/include/Vector4f.h
 
@@ -272,6 +274,8 @@ VecUtils.h
 PhotonMap.h
 /Users/ange/Desktop/photon-mapping-final/src/PhotonMap.h
 limits
+-
+random
 -
 
 /Users/ange/Desktop/photon-mapping-final/src/Renderer.h

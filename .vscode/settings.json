@@ -13,6 +13,7 @@
         "typeinfo": "cpp",
         "algorithm": "cpp",
         "vector": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "random": "cpp"
     }
 }
